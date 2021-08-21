@@ -1,9 +1,15 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const authRoutes = require('./routes/authRoutes')
-require('dotenv').config()
 const app = express()
+
+require('dotenv').config()
+
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 app.use(authRoutes)
+
 mongoUri = process.env.MONGO_URI
 
 mongoose.connect(mongoUri, {
