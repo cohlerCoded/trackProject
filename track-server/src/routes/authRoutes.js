@@ -19,4 +19,31 @@ router.post('/signup', async (req, res) => {
   }
 })
 
+router.post('/signin', async (req, res) => {
+  const { email, password } = req.body
+
+  if (!email || !password) {
+    return res
+      .status(401)
+      .send({ error: 'Must provide a valid email and password.' })
+  }
+
+  const user = await User.findOne(email)
+  if (!user) {
+    return res
+      .status(401)
+      .send({ error: 'Must provide a valid email and password.' })
+  }
+
+  try {
+    await user.comparePaswords(password)
+    const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY')
+    res.send({ token })
+  } catch (err) {
+    return res
+      .status(401)
+      .send({ error: 'Must provide a valid email and password.' })
+  }
+})
+
 module.exports = router
