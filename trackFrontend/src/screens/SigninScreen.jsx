@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 
 const SigninScreen = ({ navigation }) => {
+  const [viewPassword, setViewPassword] = useState(true)
+  const [viewIcon, setViewIcon] = useState(false)
   return (
-    <View style={{ marginVertical: '50%' }}>
+    <View style={{ marginVertical: '45%' }}>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
         Sign In
       </Text>
       <Input label='Email' />
-      <Input label='Password' />
+      <Input
+        label='Password'
+        secureTextEntry={viewPassword}
+        onFocus={() => setViewIcon(true)}
+        onBlur={() => setViewIcon(false)}
+        rightIcon={{
+          type: 'font-awesome',
+          name: viewPassword === true ? 'eye' : 'eye-slash',
+          size: viewIcon === true ? 24 : 0,
+          onPress: () => setViewPassword(!viewPassword),
+        }}
+      />
       <Button
         title='Sign In'
         loading={false}
