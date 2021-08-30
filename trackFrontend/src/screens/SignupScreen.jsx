@@ -4,7 +4,7 @@ import { Text, Input, Button } from 'react-native-elements'
 
 const SignupScreen = ({ navigation }) => {
   return (
-    <View>
+    <View style={{ marginVertical: '50%' }}>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
         Sign Up For Tracker
       </Text>
@@ -29,6 +29,12 @@ const SignupScreen = ({ navigation }) => {
       />
     </View>
   )
+}
+
+SignupScreen.navigationOptions = () => {
+  return {
+    headerShown: false,
+  }
 }
 
 export default SignupScreen

@@ -4,7 +4,7 @@ import { Text, Input, Button } from 'react-native-elements'
 
 const SigninScreen = ({ navigation }) => {
   return (
-    <View>
+    <View style={{ marginVertical: '50%' }}>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
         Sign In
       </Text>
@@ -31,4 +31,9 @@ const SigninScreen = ({ navigation }) => {
   )
 }
 
+SigninScreen.navigationOptions = () => {
+  return {
+    headerShown: false,
+  }
+}
 export default SigninScreen
