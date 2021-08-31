@@ -1,4 +1,5 @@
 import createDataContext from './createDataContext'
+import trackerApi from '../api/tracker'
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -8,7 +9,13 @@ const authReducer = (state, action) => {
 }
 
 const signup = (dispatch) => {
-  return ({ email, password }) => {
+  return async ({ email, password }) => {
+    try {
+      const res = await trackerApi.post('/signup', { email, password })
+      console.log(res.data)
+    } catch (error) {
+      console.log(error.message)
+    }
     //api req to signup with email and password
     //if sign up modify state to auth
     //if fail error

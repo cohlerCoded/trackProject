@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
+import { Context as AuthContext } from '../context/authContext'
 
 const SignupScreen = ({ navigation }) => {
+  const { state, signup } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
@@ -50,7 +52,7 @@ const SignupScreen = ({ navigation }) => {
           marginVertical: 10,
           alignSelf: 'center',
         }}
-        onPress={() => navigation.navigate('Signin')}
+        onPress={() => signup({ email, password })}
       />
     </View>
   )
