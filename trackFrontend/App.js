@@ -2,7 +2,7 @@ import React from 'react'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import { Provider as AuthProvider } from './context/authContext'
+import { Provider as AuthProvider } from './src/context/authContext'
 
 import AccountScreen from './src/screens/AccountScreen'
 import SigninScreen from './src/screens/SigninScreen'
