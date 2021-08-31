@@ -3,6 +3,8 @@ import { StyleSheet, View } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 
 const SignupScreen = ({ navigation }) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const [viewIcon, setViewIcon] = useState(false)
   return (
@@ -10,9 +12,19 @@ const SignupScreen = ({ navigation }) => {
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
         Sign Up For Tracker
       </Text>
-      <Input label='Email' />
+      <Input
+        label='Email'
+        value={email}
+        onChangeText={setEmail}
+        autoCapitalize='none'
+        autoCorrect={false}
+      />
       <Input
         label='Password'
+        value={password}
+        onChangeText={setPassword}
+        autoCapitalize='none'
+        autoCorrect={false}
         secureTextEntry={secureTextEntry}
         onFocus={() => setViewIcon(true)}
         onBlur={() => setViewIcon(false)}
