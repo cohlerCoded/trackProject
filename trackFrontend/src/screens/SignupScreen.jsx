@@ -9,6 +9,7 @@ const SignupScreen = ({ navigation }) => {
   const [password, setPassword] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const [viewIcon, setViewIcon] = useState(false)
+
   return (
     <View style={{ marginVertical: '45%' }}>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
@@ -37,6 +38,9 @@ const SignupScreen = ({ navigation }) => {
           onPress: () => setSecureTextEntry(!secureTextEntry),
         }}
       />
+      {state.errorMessage ? (
+        <Text style={styles.errorMessage}>{state.errorMessage}</Text>
+      ) : null}
       <Button
         title='Sign Up'
         loading={false}
@@ -63,5 +67,12 @@ SignupScreen.navigationOptions = () => {
     headerShown: false,
   }
 }
-
+const styles = StyleSheet.create({
+  errorMessage: {
+    fontSize: 16,
+    color: 'red',
+    textAlign: 'center',
+    marginVertical: 10,
+  },
+})
 export default SignupScreen
