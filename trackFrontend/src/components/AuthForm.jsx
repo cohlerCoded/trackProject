@@ -1,10 +1,13 @@
-import React, { useState, useContext } from 'react'
-import { StyleSheet, View, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, View } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
-import { Context as AuthContext } from '../context/authContext'
 
-const SignupScreen = ({ navigation }) => {
-  const { state, signup } = useContext(AuthContext)
+const AuthForm = ({
+  headerText,
+  buttonText,
+  errorMessage,
+  onSubmitHandler,
+}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
@@ -13,7 +16,7 @@ const SignupScreen = ({ navigation }) => {
   return (
     <View style={{ marginVertical: '45%' }}>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
-        Sign Up For Tracker
+        {headerText}
       </Text>
       <Input
         label='Email'
@@ -39,10 +42,10 @@ const SignupScreen = ({ navigation }) => {
         }}
       />
       {state.errorMessage ? (
-        <Text style={styles.errorMessage}>{state.errorMessage}</Text>
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : null}
       <Button
-        title='Sign Up'
+        title={buttonText}
         loading={false}
         loadingProps={{ size: 'small', color: 'white' }}
         buttonStyle={{
@@ -56,18 +59,13 @@ const SignupScreen = ({ navigation }) => {
           marginVertical: 10,
           alignSelf: 'center',
         }}
-        onPress={() => signup({ email, password })}
+        onPress={onSubmitHandler}
       />
-      <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
-        <Text style={styles.linkStyles}>
-          Already have an account? Go to Sign In.
-        </Text>
-      </TouchableOpacity>
     </View>
   )
 }
 
-SignupScreen.navigationOptions = () => {
+AuthForm.navigationOptions = () => {
   return {
     headerShown: false,
   }
@@ -79,12 +77,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 10,
   },
-  linkStyles: {
-    fontSize: 16,
-    color: 'blue',
-    textAlign: 'center',
-    marginVertical: 10,
-  },
 })
 
-export default SignupScreen
+export default AuthForm
