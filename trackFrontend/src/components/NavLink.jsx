@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { withNavigation } from 'react-navigation'
 
 const NavLink = ({ navigation, linkText }) => {
   return (
@@ -11,7 +12,7 @@ const NavLink = ({ navigation, linkText }) => {
   )
 }
 
-export default NavLink
+export default withNavigation(NavLink)
 
 const styles = StyleSheet.create({
   linkStyles: {
