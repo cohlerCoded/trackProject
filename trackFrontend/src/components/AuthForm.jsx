@@ -65,11 +65,6 @@ const AuthForm = ({
   )
 }
 
-AuthForm.navigationOptions = () => {
-  return {
-    headerShown: false,
-  }
-}
 const styles = StyleSheet.create({
   errorMessage: {
     fontSize: 16,
