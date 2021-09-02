@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
-const NavLink = ({ navigation }) => {
+const NavLink = ({ navigation, linkText }) => {
   return (
     <>
       <TouchableOpacity onPress={() => navigation.navigate('Signin')}>

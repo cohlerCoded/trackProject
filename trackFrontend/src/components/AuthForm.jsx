@@ -14,7 +14,7 @@ const AuthForm = ({
   const [viewIcon, setViewIcon] = useState(false)
 
   return (
-    <View style={{ marginVertical: '45%' }}>
+    <>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
         {headerText}
       </Text>
@@ -41,7 +41,7 @@ const AuthForm = ({
           onPress: () => setSecureTextEntry(!secureTextEntry),
         }}
       />
-      {state.errorMessage ? (
+      {errorMessage ? (
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : null}
       <Button
@@ -61,7 +61,7 @@ const AuthForm = ({
         }}
         onPress={onSubmitHandler}
       />
-    </View>
+    </>
   )
 }
 
