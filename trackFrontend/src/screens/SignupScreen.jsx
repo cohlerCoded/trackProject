@@ -15,7 +15,10 @@ const SignupScreen = () => {
         errorMessage={state.errorMessage}
         onSubmitHandler={signup}
       />
-      <NavLink linkText='Already have an account? Go to sign in.' />
+      <NavLink
+        linkText='Already have an account? Go to sign in.'
+        routeName='Signin'
+      />
     </View>
   )
 }
