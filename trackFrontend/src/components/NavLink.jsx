@@ -5,9 +5,7 @@ const NavLink = ({ navigation }) => {
   return (
     <>
       <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
-        <Text style={styles.linkStyles}>
-          Already have an account? Go to Sign In.
-        </Text>
+        <Text style={styles.linkStyles}>{linkText}</Text>
       </TouchableOpacity>
     </>
   )
