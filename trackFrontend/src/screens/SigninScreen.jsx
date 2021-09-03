@@ -1,56 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Text, Input, Button } from 'react-native-elements'
+import AuthForm from '../components/AuthForm'
+import NavLink from '../components/NavLink'
+import { Context as AuthContext } from '../context/authContext'
 
-const SigninScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [secureTextEntry, setSecureTextEntry] = useState(true)
-  const [viewIcon, setViewIcon] = useState(false)
+const SigninScreen = () => {
+  const { state, signin } = useContext(AuthContext)
+
   return (
     <View style={{ marginVertical: '45%' }}>
-      <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
-        Sign In
-      </Text>
-      <Input
-        label='Email'
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize='none'
-        autoCorrect={false}
+      <AuthForm
+        headerText='Sign In'
+        buttonText='Sign In'
+        errorMessage={state.errorMessage}
+        onSubmitHandler={signin}
       />
-      <Input
-        label='Password'
-        value={password}
-        onChangeText={setPassword}
-        autoCapitalize='none'
-        autoCorrect={false}
-        secureTextEntry={secureTextEntry}
-        onFocus={() => setViewIcon(true)}
-        onBlur={() => setViewIcon(false)}
-        rightIcon={{
-          type: 'font-awesome',
-          name: secureTextEntry ? 'eye' : 'eye-slash',
-          size: viewIcon ? 24 : 0,
-          onPress: () => setSecureTextEntry(!secureTextEntry),
-        }}
-      />
-      <Button
-        title='Sign In'
-        loading={false}
-        loadingProps={{ size: 'small', color: 'white' }}
-        buttonStyle={{
-          backgroundColor: 'rgba(78, 116, 289, 1)',
-          borderRadius: 100,
-        }}
-        titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
-        containerStyle={{
-          height: 50,
-          width: 200,
-          marginVertical: 10,
-          alignSelf: 'center',
-        }}
-        onPress={() => navigation.navigate('TrackList')}
+      <NavLink
+        linkText="Don't have an account yet? Go to sign up."
+        routeName='Signup'
       />
     </View>
   )
