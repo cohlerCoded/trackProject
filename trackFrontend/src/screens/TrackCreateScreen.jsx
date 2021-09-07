@@ -1,9 +1,12 @@
+import '../_mockLocation'
 import { requestForegroundPermissionsAsync } from 'expo-location'
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text } from 'react-native-elements'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Map from '../components/Map'
+moc
+
 const TrackCreateScreen = () => {
   const [err, setErr] = useState(null)
 
