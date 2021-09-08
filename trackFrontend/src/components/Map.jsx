@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
-import MapView, { Polyline } from 'react-native-maps'
+import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Context as LocationContext } from '../context/locationContext'
+import { FontAwesome5 } from '@expo/vector-icons'
 
 const Map = () => {
   const {
@@ -24,7 +25,11 @@ const Map = () => {
         longitudeDelta: 0.01,
       }}
       style={styles.map}
-    ></MapView>
+    >
+      <Marker coordinate={currentLocation.coords}>
+        <FontAwesome5 name='map-marker-alt' size={26} color='red' />
+      </Marker>
+    </MapView>
   )
 }
 
