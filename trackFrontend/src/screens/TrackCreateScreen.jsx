@@ -9,7 +9,8 @@ import { withNavigation, withNavigationFocus } from 'react-navigation'
 
 const TrackCreateScreen = ({ isFocused }) => {
   const { addLocation } = useContext(LocationContext)
-  const [err] = useLocation((location) => addLocation(location))
+  const [err] = useLocation(isFocused, addLocation)
+
   return (
     <SafeAreaView>
       <Text h2 h2Style={{ marginVertical: 30, textAlign: 'center' }}>
