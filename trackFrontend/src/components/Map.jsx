@@ -19,11 +19,11 @@ const Map = () => {
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
       }}
-      //   region={{
-      //     ...currentLocation.coords,
-      //     latitudeDelta: 0.01,
-      //     longitudeDelta: 0.01,
-      //   }}
+      region={{
+        ...currentLocation.coords,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+      }}
       style={styles.map}
     >
       <Marker coordinate={currentLocation.coords}>

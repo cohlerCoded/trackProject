@@ -5,13 +5,13 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Map from '../components/Map'
 import { Context as LocationContext } from '../context/locationContext'
 import useLocation from '../hooks/useLocation'
-import { withNavigation, withNavigationFocus } from 'react-navigation'
+import { withNavigationFocus } from 'react-navigation'
 import TrackForm from '../components/TrackForm'
 
 const TrackCreateScreen = ({ isFocused }) => {
   const { state, addLocation } = useContext(LocationContext)
   const [err] = useLocation(isFocused, (location) => {
-    addLocation(location, satte.recording)
+    addLocation(location, state.recording)
   })
 
   return (
