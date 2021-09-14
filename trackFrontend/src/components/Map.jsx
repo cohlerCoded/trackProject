@@ -6,7 +6,7 @@ import { FontAwesome5 } from '@expo/vector-icons'
 
 const Map = () => {
   const {
-    state: { currentLocation },
+    state: { currentLocation, locations },
   } = useContext(LocationContext)
 
   if (!currentLocation)
@@ -29,6 +29,10 @@ const Map = () => {
       <Marker coordinate={currentLocation.coords}>
         <FontAwesome5 name='map-marker-alt' size={26} color='red' />
       </Marker>
+      <Polyline
+        lineDashPattern={[1]}
+        coordinates={locations.map((location) => location.coords)}
+      />
     </MapView>
   )
 }
