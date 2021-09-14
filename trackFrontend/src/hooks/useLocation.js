@@ -13,7 +13,10 @@ export default (shouldTrack, callback) => {
     const startWatching = async () => {
       try {
         const { granted } = await requestForegroundPermissionsAsync()
-        const subscriber = await watchPositionAsync(
+        if (!granted) {
+          throw new Error('Location permission not granted')
+        }
+        subscriber = await watchPositionAsync(
           {
             accuracy: Accuracy.BestForNavigation,
             timeInterval: 1000,
@@ -21,9 +24,6 @@ export default (shouldTrack, callback) => {
           },
           callback
         )
-        if (!granted) {
-          throw new Error('Location permission not granted')
-        }
       } catch (error) {
         setErr(error)
       }
@@ -38,9 +38,11 @@ export default (shouldTrack, callback) => {
       subscriber(null)
     }
     return () => {
-      subscriber && subscriber.remove()
+      if (subscriber) {
+        subscriber.remove()
+      }
     }
-  }, [shouldTrack, callback, subscriber])
+  }, [shouldTrack, callback])
 
   return [err]
 }
