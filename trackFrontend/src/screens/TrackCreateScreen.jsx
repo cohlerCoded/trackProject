@@ -13,7 +13,9 @@ const TrackCreateScreen = ({ isFocused }) => {
     state: { recording },
     addLocation,
   } = useContext(LocationContext)
+  console.log('OUTSIDE', recording)
   const [err] = useLocation(isFocused, (location) => {
+    console.log('INSIDE', recording)
     addLocation(location, recording)
   })
 

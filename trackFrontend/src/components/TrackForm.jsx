@@ -20,12 +20,12 @@ const TrackForm = () => {
         onChangeText={changeName}
       />
       <Button
-        title={recording ? 'Start Recording' : 'Stop Recording'}
+        title={!recording ? 'Start Recording' : 'Stop Recording'}
         onPress={recording ? stopRecording : startRecording}
         loading={false}
         loadingProps={{ size: 'small', color: 'white' }}
         buttonStyle={
-          recording
+          !recording
             ? {
                 backgroundColor: 'green',
                 borderRadius: 100,
