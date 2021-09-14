@@ -10,7 +10,7 @@ const TrackForm = () => {
     stopRecording,
     changeName,
   } = useContext(LocationContext)
-  console.log(locations.length)
+
   return (
     <View>
       <Input
@@ -29,22 +29,37 @@ const TrackForm = () => {
             ? {
                 backgroundColor: 'green',
                 borderRadius: 100,
-                padding: 15,
               }
             : {
                 backgroundColor: 'red',
                 borderRadius: 100,
-                padding: 15,
               }
         }
         titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
         containerStyle={{
-          height: 100,
+          height: 75,
           width: 200,
-          marginVertical: 10,
           alignSelf: 'center',
         }}
       />
+      {!recording && locations.length ? (
+        <Button
+          title='Save Track'
+          onPress={() => {}}
+          loading={false}
+          loadingProps={{ size: 'small', color: 'white' }}
+          buttonStyle={{
+            backgroundColor: 'blue',
+            borderRadius: 100,
+          }}
+          titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+          containerStyle={{
+            height: 75,
+            width: 200,
+            alignSelf: 'center',
+          }}
+        />
+      ) : null}
     </View>
   )
 }
