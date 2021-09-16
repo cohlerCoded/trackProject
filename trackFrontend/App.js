@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { Provider as AuthProvider } from './src/context/authContext'
 import { Provider as LocationProvider } from './src/context/locationContext'
+import { Provider as TrackProvider } from './src/context/trackContext'
 import { setNavigator } from './src/navigationRef'
 
 import AccountScreen from './src/screens/AccountScreen'
@@ -36,11 +37,13 @@ export default () => {
   return (
     <AuthProvider>
       <LocationProvider>
-        <App
-          ref={(nav) => {
-            setNavigator(nav)
-          }}
-        />
+        <TrackProvider>
+          <App
+            ref={(nav) => {
+              setNavigator(nav)
+            }}
+          />
+        </TrackProvider>
       </LocationProvider>
     </AuthProvider>
   )
