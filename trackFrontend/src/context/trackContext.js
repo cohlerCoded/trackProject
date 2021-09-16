@@ -10,7 +10,7 @@ const trackReducer = (state, action) => {
 
 const fetchTracks = (dispatch) => () => {}
 const createTrack = (dispatch) => async (name, locations) => {
-  await lala.post('/tracks', { name, locations })
+  await trackerApi.post('/tracks', { name, locations })
 }
 const deleteTrack = (dispatch) => () => {}
 
