@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import { Button } from 'react-native-elements'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Context as TrackContext } from '../context/trackContext'
 
 const TrackDetailsScreen = ({ navigation }) => {
-  const { state } = useContext(TrackContext)
+  const { state, deleteTrack } = useContext(TrackContext)
   const _id = navigation.getParam('_id')
 
   const track = state.find((t) => t._id === _id)
@@ -26,6 +27,23 @@ const TrackDetailsScreen = ({ navigation }) => {
           coordinates={track.locations.map((location) => location.coords)}
         />
       </MapView>
+      <Button
+        title='Delete Track'
+        loading={false}
+        loadingProps={{ size: 'small', color: 'white' }}
+        buttonStyle={{
+          backgroundColor: 'red',
+          borderRadius: 100,
+        }}
+        titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+        containerStyle={{
+          height: 50,
+          width: 200,
+          marginVertical: 30,
+          alignSelf: 'center',
+        }}
+        onPress={deleteTrack}
+      />
     </View>
   )
 }
