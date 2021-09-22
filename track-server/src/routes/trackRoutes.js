@@ -30,4 +30,14 @@ router.post('/tracks', async (req, res) => {
   }
 })
 
+router.delete(':id', async (req, res) => {
+  const track = await Track.findById(req.params.id)
+  if (track) {
+    await track.remove()
+    res.json({ message: 'Track Removed' })
+  } else {
+    res.status(404)
+    throw new Error('Track Not Found')
+  }
+})
 module.exports = router
