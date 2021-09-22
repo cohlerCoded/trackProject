@@ -30,7 +30,7 @@ router.post('/tracks', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/tracks/:id', async (req, res) => {
   const track = await Track.findById(req.params.id)
   if (track) {
     await track.remove()
