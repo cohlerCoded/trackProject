@@ -17,7 +17,7 @@ const fetchTracks = (dispatch) => async () => {
 const createTrack = (dispatch) => async (name, locations) => {
   await trackerApi.post('/tracks', { name, locations })
 }
-const deleteTrack = (dispatch) => (id) => {
+const deleteTrack = (dispatch) => async (id) => {
   console.log('delete')
   await trackerApi.delete(`/tracks/${id}`)
 }

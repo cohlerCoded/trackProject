@@ -42,7 +42,10 @@ const TrackDetailsScreen = ({ navigation }) => {
           marginVertical: 30,
           alignSelf: 'center',
         }}
-        onPress={deleteTrack}
+        onPress={() => {
+          deleteTrack(_id)
+          navigation.navigate('TrackList')
+        }}
       />
     </View>
   )
