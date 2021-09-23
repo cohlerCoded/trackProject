@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import MapView, { Polyline, Marker } from 'react-native-maps'
+import ConfirmBox from '../components/ConfirmBox'
 import { Context as TrackContext } from '../context/trackContext'
 
 const TrackDetailsScreen = ({ navigation }) => {
@@ -43,8 +44,14 @@ const TrackDetailsScreen = ({ navigation }) => {
           alignSelf: 'center',
         }}
         onPress={() => {
-          deleteTrack(_id)
-          navigation.navigate('TrackList')
+          ;<ConfirmBox
+            header='Are your sure?'
+            message='Are you sure you want to remove this beautiful box?'
+            confirmText='Yes'
+            rejectText='No'
+            confirmHandler={deleteTrack}
+          />
+          // navigation.navigate('TrackList')
         }}
       />
     </View>

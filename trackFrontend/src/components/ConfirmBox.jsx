@@ -4,25 +4,27 @@ import { View, Button, StyleSheet, Alert } from 'react-native'
 export default function ConfirmBox() {
   const [showBox, setShowBox] = useState(true)
 
-  const showConfirmDialog = () => {
-    return Alert.alert(
-      'Are your sure?',
-      'Are you sure you want to remove this beautiful box?',
-      [
-        // The "Yes" button
-        {
-          text: 'Yes',
-          onPress: () => {
-            setShowBox(false)
-          },
+  const showConfirmDialog = ({
+    header,
+    message,
+    confirmText,
+    rejectText,
+    confirmHandler,
+  }) => {
+    return Alert.alert(header, message, [
+      // The "Yes" button
+      {
+        text: confirmText,
+        onPress: () => {
+          confirmHandler
         },
-        // The "No" button
-        // Does nothing but dismiss the dialog when tapped
-        {
-          text: 'No',
-        },
-      ]
-    )
+      },
+      // The "No" button
+      // Does nothing but dismiss the dialog when tapped
+      {
+        text: rejectText,
+      },
+    ])
   }
 
   return (
