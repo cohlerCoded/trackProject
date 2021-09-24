@@ -1,36 +1,31 @@
 import React, { useState } from 'react'
 import { View, Button, StyleSheet, Alert } from 'react-native'
 
-export default function ConfirmBox() {
-  const [showBox, setShowBox] = useState(true)
-
-  const showConfirmDialog = ({
-    header,
-    message,
-    confirmText,
-    rejectText,
-    confirmHandler,
-  }) => {
-    return Alert.alert(header, message, [
-      // The "Yes" button
-      {
-        text: confirmText,
-        onPress: () => {
-          confirmHandler
-        },
+const ConfirmBox = ({
+  header,
+  message,
+  confirmText,
+  rejectText,
+  confirmHandler,
+}) => {
+  return Alert.alert(header, message, [
+    // The "Yes" button
+    {
+      text: confirmText,
+      onPress: () => {
+        confirmHandler
       },
-      // The "No" button
-      // Does nothing but dismiss the dialog when tapped
-      {
-        text: rejectText,
-      },
-    ])
-  }
-
+    },
+    // The "No" button
+    // Does nothing but dismiss the dialog when tapped
+    {
+      text: rejectText,
+    },
+  ])
   return (
-    <View style={styles.screen}>
-      {showBox && <View style={styles.box}></View>}
-      <Button title='Delete' onPress={() => showConfirmDialog()} />
+    <View style={styles.container}>
+      <Button title={'2-Button Alert'} onPress={createTwoButtonAlert} />
+      <Button title={'3-Button Alert'} onPress={createThreeButtonAlert} />
     </View>
   )
 }
@@ -38,7 +33,7 @@ export default function ConfirmBox() {
 // Kindacode.com
 // Just some styles
 const styles = StyleSheet.create({
-  screen: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -53,3 +48,5 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
 })
+
+export default ConfirmBox

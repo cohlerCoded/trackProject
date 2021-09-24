@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Alert } from 'react-native'
 import { Button } from 'react-native-elements'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import ConfirmBox from '../components/ConfirmBox'
@@ -44,14 +44,34 @@ const TrackDetailsScreen = ({ navigation }) => {
           alignSelf: 'center',
         }}
         onPress={() => {
-          ;<ConfirmBox
-            header='Are your sure?'
-            message='Are you sure you want to remove this beautiful box?'
-            confirmText='Yes'
-            rejectText='No'
-            confirmHandler={deleteTrack}
-          />
-          // navigation.navigate('TrackList')
+          // return (
+          //   <ConfirmBox
+          //     header='Are your sure?'
+          //     message='Are you sure you want to remove this beautiful box?'
+          //     confirmText='Yes'
+          //     rejectText='No'
+          //     confirmHandler={deleteTrack}
+          //   />
+          // )
+          Alert.alert(
+            'Are your sure?',
+            'Are you sure you want to delete this track?',
+            [
+              // The "Yes" button
+              {
+                text: 'Yes',
+                onPress: () => {
+                  deleteTrack(_id)
+                  navigation.navigate('TrackList')
+                },
+              },
+              // The "No" button
+              // Does nothing but dismiss the dialog when tapped
+              {
+                text: 'No',
+              },
+            ]
+          )
         }}
       />
     </View>
