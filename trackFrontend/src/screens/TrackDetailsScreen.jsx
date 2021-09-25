@@ -43,34 +43,9 @@ const TrackDetailsScreen = ({ navigation }) => {
           marginVertical: 30,
           alignSelf: 'center',
         }}
-        onPress={() => {
-          // return (
-          //   <ConfirmBox
-          //     header='Are your sure?'
-          //     message='Are you sure you want to remove this beautiful box?'
-          //     confirmText='Yes'
-          //     rejectText='No'
-          //     confirmHandler={deleteTrack}
-          //   />
-          // )
-          Alert.alert(
-            'Are your sure?',
-            'Are you sure you want to delete this track?',
-            [
-              // The "Yes" button
-              {
-                text: 'Yes',
-                onPress: async () => {
-                  deleteTrack(_id)
-                },
-              },
-              // The "No" button
-              // Does nothing but dismiss the dialog when tapped
-              {
-                text: 'No',
-              },
-            ]
-          )
+        onPress={async () => {
+          await navigation.navigate('TrackList')
+          deleteTrack(_id)
         }}
       />
     </View>
