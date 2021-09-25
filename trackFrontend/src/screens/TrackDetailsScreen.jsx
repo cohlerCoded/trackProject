@@ -60,9 +60,8 @@ const TrackDetailsScreen = ({ navigation }) => {
               // The "Yes" button
               {
                 text: 'Yes',
-                onPress: () => {
+                onPress: async () => {
                   deleteTrack(_id)
-                  navigation.navigate('TrackList')
                 },
               },
               // The "No" button
