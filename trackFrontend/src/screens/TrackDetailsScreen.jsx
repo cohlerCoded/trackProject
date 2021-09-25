@@ -45,7 +45,7 @@ const TrackDetailsScreen = ({ navigation }) => {
         }}
         onPress={async () => {
           await navigation.navigate('TrackList')
-          deleteTrack(_id)
+          deleteTrack(_id, track.name)
         }}
       />
     </View>

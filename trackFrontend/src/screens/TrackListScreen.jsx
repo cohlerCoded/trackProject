@@ -46,7 +46,7 @@ const TrackListScreen = ({ navigation }) => {
                     marginHorizontal: 20,
                   }}
                   onPress={() => {
-                    deleteTrack(item._id)
+                    deleteTrack(item._id, item.name)
                     navigation.navigate('TrackList')
                   }}
                 >
