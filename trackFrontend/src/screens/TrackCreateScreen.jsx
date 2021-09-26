@@ -8,6 +8,7 @@ import useLocation from '../hooks/useLocation'
 import { withNavigationFocus } from 'react-navigation'
 import TrackForm from '../components/TrackForm'
 import { FontAwesome } from '@expo/vector-icons'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const TrackCreateScreen = ({ isFocused }) => {
   const {
@@ -25,14 +26,16 @@ const TrackCreateScreen = ({ isFocused }) => {
   const [err] = useLocation(isFocused || recording, callback)
 
   return (
-    <SafeAreaView>
-      <Text h2 h2Style={{ marginVertical: 30, textAlign: 'center' }}>
-        Create a New Track
-      </Text>
-      <Map />
-      {err && <Text>Please Enable Location Services</Text>}
-      <TrackForm />
-    </SafeAreaView>
+    <KeyboardAwareScrollView style={{ flex: 1 }}>
+      <SafeAreaView>
+        <Text h2 h2Style={{ marginVertical: 30, textAlign: 'center' }}>
+          Create a New Track
+        </Text>
+        <Map />
+        {err && <Text>Please Enable Location Services</Text>}
+        <TrackForm />
+      </SafeAreaView>
+    </KeyboardAwareScrollView>
   )
 }
 
