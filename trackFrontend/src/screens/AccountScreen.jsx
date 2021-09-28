@@ -4,15 +4,22 @@ import { Text, Input, Button } from 'react-native-elements'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Context as AuthContext } from '../context/authContext'
 import { FontAwesome } from '@expo/vector-icons'
+import AuthForm from '../components/AuthForm'
 
-const AccountScreen = () => {
-  const { signout } = useContext(AuthContext)
+const AccountScreen = ({ navigation }) => {
+  const { state, signup, signout, clearErrorMessage } = useContext(AuthContext)
   return (
     <View>
       <SafeAreaView forceInset={{ top: 'always' }}>
         <Text h3 h3Style={{ marginVertical: 30, textAlign: 'center' }}>
           Account Settings
         </Text>
+        <AuthForm
+          headerText='Edit Info'
+          buttonText='Save Changes'
+          errorMessage={state.errorMessage}
+          onSubmitHandler={signup}
+        />
         <Button
           title='Sign Out'
           loading={false}
@@ -37,9 +44,9 @@ const AccountScreen = () => {
 
 AccountScreen.navigationOptions = {
   title: 'Account',
+  headerTitleAlign: 'center',
   tabBarIcon: <FontAwesome name='gear' size={20} />,
 }
-
 const styles = StyleSheet.create({})
 
 export default AccountScreen
