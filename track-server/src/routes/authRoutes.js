@@ -46,4 +46,22 @@ router.post('/signin', async (req, res) => {
   }
 })
 
+router.put('/:id', async (req, res) => {
+  const user = await User.findById(req.params.id)
+  if (user) {
+    user.email = req.body.email || user.email
+
+    const updatedUser = await user.save()
+
+    res.json({
+      _id: updatedUser._id,
+      email: updatedUser.email,
+      password: updatedUser.password,
+    })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
 module.exports = router
