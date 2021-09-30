@@ -49,10 +49,13 @@ router.post('/signin', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const user = await User.findById(req.params.id)
   if (user) {
+    console.log(user)
+
     user.email = req.body.email || user.email
+    user.password = req.body.password || user.password
 
     const updatedUser = await user.save()
-
+    console.log(updatedUser)
     res.json({
       _id: updatedUser._id,
       email: updatedUser.email,
