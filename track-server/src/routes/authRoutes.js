@@ -46,32 +46,31 @@ router.post('/signin', async (req, res) => {
   }
 })
 
-router.get('/:id', async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id)
-    res.json(user)
-  } catch (error) {
-    return res.status(404).send({ error: 'User not found.' })
-  }
-})
+// router.get('/:id', async (req, res) => {
+//   try {
+//     const user = await User.findById(req.params.id)
+//     res.json(user)
+//   } catch (error) {
+//     return res.status(404).send({ error: 'User not found.' })
+//   }
+// })
 
-router.put('/:id', async (req, res) => {
-  const user = await User.findById(req.params.id)
-  if (user) {
-    user.email = req.body.email || user.email
-    user.password = req.body.password || user.password
+// router.put('/:id', async (req, res) => {
+//   const user = await User.findById(req.params.id)
+//   if (user) {
+//     user.email = req.body.email || user.email
+//     user.password = req.body.password || user.password
 
-    const updatedUser = await user.save()
+//     const updatedUser = await user.save()
 
-    res.json({
-      _id: updatedUser._id,
-      email: updatedUser.email,
-      password: updatedUser.password,
-    })
-  } else {
-    res.status(404)
-    throw new Error('User not found')
-  }
-})
+//     res.json({
+//       email: updatedUser.email,
+//       password: updatedUser.password,
+//     })
+//   } else {
+//     res.status(404)
+//     throw new Error('User not found')
+//   }
+// })
 
 module.exports = router

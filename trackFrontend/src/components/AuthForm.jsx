@@ -9,13 +9,10 @@ const AuthForm = ({
   errorMessage,
   onSubmitHandler,
 }) => {
-  const { state } = useContext(AuthContext)
-  console.log(state)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const [viewIcon, setViewIcon] = useState(false)
-
   return (
     <>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>

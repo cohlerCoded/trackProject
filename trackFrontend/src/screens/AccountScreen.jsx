@@ -18,7 +18,7 @@ const AccountScreen = ({ navigation }) => {
           headerText='Edit Info'
           buttonText='Save Changes'
           errorMessage={state.errorMessage}
-          onSubmitHandler={updateUser}
+          onSubmitHandler={() => {}}
         />
         <Button
           title='Sign Out'
