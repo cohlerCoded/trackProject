@@ -10,7 +10,8 @@ const authReducer = (state, action) => {
     case 'SIGNUP_ERROR':
       return { ...state, errorMessage: action.payload }
     case 'USER_UPDATE_SUCCESS':
-      return console.log(action.payload)
+      console.log(action.payload)
+      return { state: action.payload }
     case 'USER_UPDATE_ERROR':
       return { ...state, errorMessage: action.payload }
     case 'SIGNIN_SUCCESS':
@@ -56,7 +57,7 @@ const signup =
   }
 const updateUser = (dispatch) => async (user) => {
   try {
-    const res = await trackerApi.put(`/${user._id}`, { email, password })
+    const res = await trackerApi.put(`/${user._id}`, user)
     dispatch({ type: 'USER_UPDATE_SUCCESS', payload: res.data })
   } catch (error) {
     dispatch({

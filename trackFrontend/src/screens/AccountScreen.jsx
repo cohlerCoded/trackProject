@@ -7,7 +7,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import AuthForm from '../components/AuthForm'
 
 const AccountScreen = ({ navigation }) => {
-  const { state, signup, signout, clearErrorMessage } = useContext(AuthContext)
+  const { state, signout, updateUser } = useContext(AuthContext)
   return (
     <View>
       <SafeAreaView forceInset={{ top: 'always' }}>
@@ -18,7 +18,7 @@ const AccountScreen = ({ navigation }) => {
           headerText='Edit Info'
           buttonText='Save Changes'
           errorMessage={state.errorMessage}
-          onSubmitHandler={signup}
+          onSubmitHandler={updateUser}
         />
         <Button
           title='Sign Out'

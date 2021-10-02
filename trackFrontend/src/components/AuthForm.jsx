@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
+import { Context as AuthContext } from '../context/authContext'
 
 const AuthForm = ({
   headerText,
@@ -8,6 +9,8 @@ const AuthForm = ({
   errorMessage,
   onSubmitHandler,
 }) => {
+  const { state } = useContext(AuthContext)
+  console.log(state)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
