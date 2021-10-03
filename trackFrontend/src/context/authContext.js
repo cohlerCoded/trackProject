@@ -9,8 +9,8 @@ const authReducer = (state, action) => {
       return { errorMessage: '', token: action.payload }
     case 'SIGNUP_ERROR':
       return { ...state, errorMessage: action.payload }
-    // case 'GET_USER_DETAILS':
-    //   return { ...state, errorMessage: '', user: action.payload }
+    case 'GET_USER_DETAILS':
+      return { ...state, errorMessage: '', user: action.payload }
     case 'SIGNIN_SUCCESS':
       return { errorMessage: '', token: action.payload }
     case 'SIGNIN_ERROR':
@@ -53,10 +53,10 @@ const signup =
     }
   }
 
-// const getUserDetails = (dispatch) => async (id) => {
-//   const res = await trackerApi.get(`/user/${id}`)
-//   dispatch({ type: 'GET_USER_DETAILS', payload: res.data })
-// }
+const getUserDetails = (dispatch) => async (token) => {
+  const res = await trackerApi.get(`/user/${token}`)
+  dispatch({ type: 'GET_USER_DETAILS', payload: res.data })
+}
 
 // const updateUser = (dispatch) => async (user) => {
 //   try {
@@ -100,6 +100,7 @@ export const { Provider, Context } = createDataContext(
     signout,
     clearErrorMessage,
     tryLocalSignin,
+    getUserDetails,
   },
   { token: null, errorMessage: '' }
 )

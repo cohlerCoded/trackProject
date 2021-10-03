@@ -16,6 +16,7 @@ const AuthForm = ({
   const { state, getUserDetails } = useContext(AuthContext)
   useEffect(() => {
     if (state.token) {
+      getUserDetails(state.token)
       console.log(state)
     }
   }, [])

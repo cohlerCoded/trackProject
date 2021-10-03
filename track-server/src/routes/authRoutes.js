@@ -46,9 +46,11 @@ router.post('/signin', async (req, res) => {
   }
 })
 
-router.get('/user/:id', async (req, res) => {
+router.get('/user/:token', async (req, res) => {
   try {
-    const user = await User.findById(req.params.id)
+    const { token } = req.params
+    const decoded = await jwt.verify(token, 'MY_SECRET_KEY')
+    const user = await User.findById(decoded.userId)
     res.json(user)
   } catch (error) {
     return res.status(404).send({ error: 'User not found.' })
