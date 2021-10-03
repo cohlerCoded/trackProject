@@ -9,11 +9,8 @@ const authReducer = (state, action) => {
       return { errorMessage: '', token: action.payload }
     case 'SIGNUP_ERROR':
       return { ...state, errorMessage: action.payload }
-    // case 'USER_UPDATE_SUCCESS':
-    //   console.log(action.payload)
-    //   return { state: action.payload }
-    // case 'USER_UPDATE_ERROR':
-    //   return { ...state, errorMessage: action.payload }
+    // case 'GET_USER_DETAILS':
+    //   return { ...state, errorMessage: '', user: action.payload }
     case 'SIGNIN_SUCCESS':
       return { errorMessage: '', token: action.payload }
     case 'SIGNIN_ERROR':
@@ -57,8 +54,8 @@ const signup =
   }
 
 // const getUserDetails = (dispatch) => async (id) => {
-//   const res = await trackerApi.get(`/${id}`, user)
-//   console.log(res)
+//   const res = await trackerApi.get(`/user/${id}`)
+//   dispatch({ type: 'GET_USER_DETAILS', payload: res.data })
 // }
 
 // const updateUser = (dispatch) => async (user) => {

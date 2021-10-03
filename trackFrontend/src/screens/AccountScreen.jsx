@@ -8,6 +8,7 @@ import AuthForm from '../components/AuthForm'
 
 const AccountScreen = ({ navigation }) => {
   const { state, signout, updateUser } = useContext(AuthContext)
+  console.log(state)
   return (
     <View>
       <SafeAreaView forceInset={{ top: 'always' }}>

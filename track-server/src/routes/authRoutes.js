@@ -46,14 +46,14 @@ router.post('/signin', async (req, res) => {
   }
 })
 
-// router.get('/:id', async (req, res) => {
-//   try {
-//     const user = await User.findById(req.params.id)
-//     res.json(user)
-//   } catch (error) {
-//     return res.status(404).send({ error: 'User not found.' })
-//   }
-// })
+router.get('/user/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+    res.json(user)
+  } catch (error) {
+    return res.status(404).send({ error: 'User not found.' })
+  }
+})
 
 // router.put('/:id', async (req, res) => {
 //   const user = await User.findById(req.params.id)

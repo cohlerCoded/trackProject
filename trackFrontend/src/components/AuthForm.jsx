@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 import { Context as AuthContext } from '../context/authContext'
@@ -13,6 +13,12 @@ const AuthForm = ({
   const [password, setPassword] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const [viewIcon, setViewIcon] = useState(false)
+  const { state, getUserDetails } = useContext(AuthContext)
+  useEffect(() => {
+    if (state.token) {
+      console.log(state)
+    }
+  }, [])
   return (
     <>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
