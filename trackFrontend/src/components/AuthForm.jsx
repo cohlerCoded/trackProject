@@ -17,7 +17,8 @@ const AuthForm = ({
   useEffect(() => {
     if (state.token) {
       getUserDetails(state.token)
-      console.log(state)
+      setEmail(state.user.email)
+      setPassword(state.user.password)
     }
   }, [])
   return (
