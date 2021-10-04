@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 import { Context as AuthContext } from '../context/authContext'
+import PhoneInput from './PhoneInput'
 
 const AuthForm = ({
   headerText,
@@ -17,8 +18,7 @@ const AuthForm = ({
   useEffect(() => {
     if (state.token) {
       getUserDetails(state.token)
-      setEmail(state.user.email)
-      setPassword(state.user.password)
+      console.log(state)
     }
   }, [])
   return (
@@ -33,6 +33,7 @@ const AuthForm = ({
         autoCapitalize='none'
         autoCorrect={false}
       />
+      <PhoneInput />
       <Input
         label='Password'
         value={password}
