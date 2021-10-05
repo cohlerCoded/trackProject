@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, StyleSheet } from 'react-native'
 
 const PhoneInput = () => {
   return (
@@ -16,61 +16,38 @@ const PhoneInput = () => {
           marginRight: 10,
         }}
       >
-        <Text
-          style={{
-            fontSize: 18,
-            alignSelf: 'center',
-          }}
-        >
-          {'( '}
-        </Text>
+        <Text style={styles.text}>{'( '}</Text>
         <TextInput
           maxLength={3}
           placeholder='123'
           keyboardType='numeric'
-          style={{
-            alignSelf: 'center',
-            fontSize: 18,
-          }}
+          style={styles.text}
         />
-        <Text
-          style={{
-            fontSize: 18,
-            alignSelf: 'center',
-          }}
-        >
-          {' ) '}
-        </Text>
+        <Text style={styles.text}>{' ) '}</Text>
         <TextInput
           maxLength={3}
           keyboardType='numeric'
           placeholder='456'
-          style={{
-            fontSize: 18,
-            padding: 5,
-          }}
+          style={styles.text}
         />
-        <Text
-          style={{
-            fontSize: 18,
-            alignSelf: 'center',
-          }}
-        >
-          {' - '}
-        </Text>
-
+        <Text style={styles.text}>{' - '}</Text>
         <TextInput
           maxLength={4}
           keyboardType='numeric'
           placeholder='7890'
-          style={{
-            alignSelf: 'center',
-            fontSize: 18,
-          }}
+          style={styles.text}
         />
       </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 18,
+    alignSelf: 'center',
+    marginVertical: 10,
+  },
+})
 
 export default PhoneInput
