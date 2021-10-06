@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 
-const PhoneInput = () => {
+const PhoneInput = ({ onInputChange, number }) => {
   return (
     <View style={{ marginLeft: 10, paddingBottom: 20 }}>
       <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#86939e' }}>
@@ -22,6 +22,8 @@ const PhoneInput = () => {
           placeholder='123'
           keyboardType='numeric'
           style={styles.text}
+          onChangeText={onInputChange}
+          value={number}
         />
         <Text style={styles.text}>{' ) '}</Text>
         <TextInput

@@ -12,9 +12,15 @@ const AuthForm = ({
 }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const [viewIcon, setViewIcon] = useState(false)
   const { state, getUserDetails } = useContext(AuthContext)
+
+  const phoneInputHandler = (number) => setPhoneNumber(number)
+
+  console.log(phoneNumber)
+
   useEffect(() => {
     if (state.token) {
       getUserDetails(state.token)
@@ -33,7 +39,7 @@ const AuthForm = ({
         autoCapitalize='none'
         autoCorrect={false}
       />
-      <PhoneInput />
+      <PhoneInput onInputChange={phoneInputHandler} number={phoneNumber} />
       <Input
         label='Password'
         value={password}
