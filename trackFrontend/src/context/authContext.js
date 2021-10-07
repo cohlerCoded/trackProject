@@ -39,16 +39,21 @@ const clearErrorMessage = (dispatch) => () => {
 }
 const signup =
   (dispatch) =>
-  async ({ email, password }) => {
+  async ({ email, password, phoneNumber }) => {
     try {
-      const res = await trackerApi.post('/signup', { email, password })
+      const res = await trackerApi.post('/signup', {
+        email,
+        password,
+        phoneNumber,
+      })
       await AsyncStorage.setItem('token', res.data.token)
       dispatch({ type: 'SIGNUP_SUCCESS', payload: res.data.token })
       navigate('TrackList')
     } catch (error) {
+      console.log(error.response.data)
       dispatch({
         type: 'SIGNUP_ERROR',
-        payload: 'Something went wrong with sign up',
+        payload: error.response && error.response.data,
       })
     }
   }

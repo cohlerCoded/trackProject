@@ -6,10 +6,22 @@ const User = mongoose.model('User')
 const router = express.Router()
 
 router.post('/signup', async (req, res) => {
-  const { email, password } = req.body
-
+  const { email, password, phoneNumber } = req.body
   try {
-    const user = new User({ email, password })
+    const userExist = await User.findOne({ email })
+    const phoneNumberExist = await User.findOne({ phoneNumber })
+    if (userExist) {
+      res.status(400)
+      throw new Error('User with that email already exist')
+    }
+    if (phoneNumberExist) {
+      res.status(400)
+      throw new Error('User with that phone number already exist')
+    }
+    if (phoneNumber.length !== 10) {
+      throw new Error('Phone number must be 10 digits')
+    }
+    const user = new User({ email, password, phoneNumber })
     await user.save()
 
     const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY')

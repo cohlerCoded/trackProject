@@ -75,7 +75,7 @@ const AuthForm = ({
           marginVertical: 10,
           alignSelf: 'center',
         }}
-        onPress={() => onSubmitHandler({ email, password })}
+        onPress={() => onSubmitHandler({ email, password, phoneNumber })}
       />
     </>
   )
