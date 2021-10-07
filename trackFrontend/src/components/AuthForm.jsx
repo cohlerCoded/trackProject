@@ -34,13 +34,13 @@ const AuthForm = ({
         {headerText}
       </Text>
       <Input
-        label='Email'
+        label={screen === 'Signin' ? 'Email or Phone Number' : 'Email'}
         value={email}
         onChangeText={setEmail}
         autoCapitalize='none'
         autoCorrect={false}
       />
-      <PhoneInput onInputChange={phoneInputHandler} />
+      {screen !== 'Signin' && <PhoneInput onInputChange={phoneInputHandler} />}
       {screen !== 'Account' && (
         <Input
           label='Password'

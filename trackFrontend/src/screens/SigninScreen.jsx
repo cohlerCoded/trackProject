@@ -5,8 +5,11 @@ import AuthForm from '../components/AuthForm'
 import NavLink from '../components/NavLink'
 import { Context as AuthContext } from '../context/authContext'
 
-const SigninScreen = () => {
+const SigninScreen = ({ navigation }) => {
   const { state, signin, clearErrorMessage } = useContext(AuthContext)
+
+  const { routeName } = navigation.state
+
   return (
     <View style={{ marginVertical: '45%' }}>
       <NavigationEvents onWillFocus={clearErrorMessage} />
@@ -15,6 +18,7 @@ const SigninScreen = () => {
         buttonText='Sign In'
         errorMessage={state.errorMessage}
         onSubmitHandler={signin}
+        screen={routeName}
       />
       <NavLink
         linkText="Don't have an account yet? Go to sign up."
