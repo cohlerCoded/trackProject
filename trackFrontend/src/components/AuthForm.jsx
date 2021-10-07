@@ -9,6 +9,7 @@ const AuthForm = ({
   buttonText,
   errorMessage,
   onSubmitHandler,
+  screen,
 }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -19,8 +20,7 @@ const AuthForm = ({
 
   const phoneInputHandler = (number) => setPhoneNumber(number)
 
-  console.log(phoneNumber)
-
+  console.log(phoneNumber, screen)
   useEffect(() => {
     if (state.token) {
       getUserDetails(state.token)
@@ -41,22 +41,24 @@ const AuthForm = ({
         autoCorrect={false}
       />
       <PhoneInput onInputChange={phoneInputHandler} />
-      <Input
-        label='Password'
-        value={password}
-        onChangeText={setPassword}
-        autoCapitalize='none'
-        autoCorrect={false}
-        secureTextEntry={secureTextEntry}
-        onFocus={() => setViewIcon(true)}
-        onBlur={() => setViewIcon(false)}
-        rightIcon={{
-          type: 'font-awesome',
-          name: secureTextEntry ? 'eye' : 'eye-slash',
-          size: viewIcon ? 24 : 0,
-          onPress: () => setSecureTextEntry(!secureTextEntry),
-        }}
-      />
+      {screen !== 'Account' && (
+        <Input
+          label='Password'
+          value={password}
+          onChangeText={setPassword}
+          autoCapitalize='none'
+          autoCorrect={false}
+          secureTextEntry={secureTextEntry}
+          onFocus={() => setViewIcon(true)}
+          onBlur={() => setViewIcon(false)}
+          rightIcon={{
+            type: 'font-awesome',
+            name: secureTextEntry ? 'eye' : 'eye-slash',
+            size: viewIcon ? 24 : 0,
+            onPress: () => setSecureTextEntry(!secureTextEntry),
+          }}
+        />
+      )}
       {errorMessage ? (
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : null}

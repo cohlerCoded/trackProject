@@ -5,9 +5,11 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Context as AuthContext } from '../context/authContext'
 import { FontAwesome } from '@expo/vector-icons'
 import AuthForm from '../components/AuthForm'
+import { useRoute } from '@react-navigation/native'
 
 const AccountScreen = ({ navigation }) => {
   const { state, signout, updateUser } = useContext(AuthContext)
+  const { routeName } = navigation.state
   console.log(state)
   return (
     <View>
@@ -16,6 +18,7 @@ const AccountScreen = ({ navigation }) => {
           Account Settings
         </Text>
         <AuthForm
+          screen={routeName}
           headerText='Edit Info'
           buttonText='Save Changes'
           errorMessage={state.errorMessage}
