@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 
-const PhoneInput = ({ onInputChange, number }) => {
+const PhoneInput = ({ onInputChange }) => {
+  const [areaCode, setAreaCode] = useState('')
+  const [prefix, setPrefix] = useState('')
+  const [subscriber, setSubscriber] = useState('')
+
+  useEffect(() => {
+    onInputChange(areaCode + prefix + subscriber)
+  }, [areaCode, prefix, subscriber])
+
   return (
     <View style={{ marginLeft: 10, paddingBottom: 20 }}>
       <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#86939e' }}>
@@ -22,8 +30,8 @@ const PhoneInput = ({ onInputChange, number }) => {
           placeholder='123'
           keyboardType='numeric'
           style={styles.text}
-          onChangeText={onInputChange}
-          value={number}
+          onChangeText={(number) => setAreaCode(number)}
+          value={areaCode}
         />
         <Text style={styles.text}>{' ) '}</Text>
         <TextInput
@@ -31,6 +39,8 @@ const PhoneInput = ({ onInputChange, number }) => {
           keyboardType='numeric'
           placeholder='456'
           style={styles.text}
+          onChangeText={(number) => setPrefix(number)}
+          value={prefix}
         />
         <Text style={styles.text}>{' - '}</Text>
         <TextInput
@@ -38,6 +48,8 @@ const PhoneInput = ({ onInputChange, number }) => {
           keyboardType='numeric'
           placeholder='7890'
           style={styles.text}
+          onChangeText={(number) => setSubscriber(number)}
+          value={subscriber}
         />
       </View>
     </View>

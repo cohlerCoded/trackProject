@@ -27,6 +27,7 @@ const AuthForm = ({
       console.log(state)
     }
   }, [])
+
   return (
     <>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
@@ -39,7 +40,7 @@ const AuthForm = ({
         autoCapitalize='none'
         autoCorrect={false}
       />
-      <PhoneInput onInputChange={phoneInputHandler} number={phoneNumber} />
+      <PhoneInput onInputChange={phoneInputHandler} />
       <Input
         label='Password'
         value={password}
