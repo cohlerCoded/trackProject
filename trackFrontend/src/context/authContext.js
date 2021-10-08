@@ -9,6 +9,10 @@ const authReducer = (state, action) => {
       return { errorMessage: '', token: action.payload }
     case 'SIGNUP_ERROR':
       return { ...state, errorMessage: action.payload }
+    case 'USER_UPDATE_SUCCESS':
+      return { errorMessage: '', user: action.payload }
+    case 'USER_UPDATE_ERROR':
+      return { ...state, errorMessage: action.payload }
     case 'GET_USER_DETAILS':
       return { ...state, errorMessage: '', user: action.payload }
     case 'SIGNIN_SUCCESS':
@@ -106,6 +110,7 @@ export const { Provider, Context } = createDataContext(
     clearErrorMessage,
     tryLocalSignin,
     getUserDetails,
+    updateUser,
   },
   { token: null, errorMessage: '' }
 )
