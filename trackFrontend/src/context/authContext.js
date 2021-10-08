@@ -63,17 +63,17 @@ const getUserDetails = (dispatch) => async (token) => {
   dispatch({ type: 'GET_USER_DETAILS', payload: res.data })
 }
 
-// const updateUser = (dispatch) => async (user) => {
-//   try {
-//     const res = await trackerApi.put(`/${user._id}`, user)
-//     dispatch({ type: 'USER_UPDATE_SUCCESS', payload: res.data })
-//   } catch (error) {
-//     dispatch({
-//       type: 'USER_UPDATE_ERROR',
-//       payload: 'Something went wrong with update',
-//     })
-//   }
-// }
+const updateUser = (dispatch) => async (user) => {
+  try {
+    const res = await trackerApi.put(`/${user._id}`, user)
+    dispatch({ type: 'USER_UPDATE_SUCCESS', payload: res.data })
+  } catch (error) {
+    dispatch({
+      type: 'USER_UPDATE_ERROR',
+      payload: 'Something went wrong with update',
+    })
+  }
+}
 
 const signin =
   (dispatch) =>
