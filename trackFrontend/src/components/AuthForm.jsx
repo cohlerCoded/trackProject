@@ -20,12 +20,19 @@ const AuthForm = ({
 
   const phoneInputHandler = (number) => setPhoneNumber(number)
 
-  console.log(phoneNumber, screen)
   useEffect(() => {
-    if (state.token) {
-      getUserDetails(state.token)
-      console.log(state)
+    const getData = async () => {
+      try {
+        if (state.token) {
+          await getUserDetails(state.token)
+          setEmail(state.user.email)
+          setPhoneNumber(state.user.phoneNumber)
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
+    getData()
   }, [])
 
   return (
@@ -40,7 +47,9 @@ const AuthForm = ({
         autoCapitalize='none'
         autoCorrect={false}
       />
-      {screen !== 'Signin' && <PhoneInput onInputChange={phoneInputHandler} />}
+      {screen !== 'Signin' && (
+        <PhoneInput onInputChange={phoneInputHandler} number={phoneNumber} />
+      )}
       {screen !== 'Account' && (
         <Input
           label='Password'

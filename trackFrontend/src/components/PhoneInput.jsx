@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 
-const PhoneInput = ({ onInputChange }) => {
+const PhoneInput = ({ onInputChange, number }) => {
   const [areaCode, setAreaCode] = useState('')
   const [prefix, setPrefix] = useState('')
   const [subscriber, setSubscriber] = useState('')
