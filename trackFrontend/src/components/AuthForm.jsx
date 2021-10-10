@@ -21,20 +21,19 @@ const AuthForm = ({
   const phoneInputHandler = (number) => setPhoneNumber(number)
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        if (state.token) {
-          await getUserDetails(state.token)
-          setEmail(state.user.email)
-          setPhoneNumber(state.user.phoneNumber)
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getData()
+    console.log(state)
+    // const data = async () => {
+    //   if (state.token) {
+    //     try {
+    //       const { user } = await getUserDetails(state.token)
+    //       console.log(user)
+    //     } catch (error) {
+    //       console.log(error)
+    //     }
+    //   }
+    // }
+    // data()
   }, [])
-
   return (
     <>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>

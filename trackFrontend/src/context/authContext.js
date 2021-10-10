@@ -86,6 +86,10 @@ const signin =
       const res = await trackerApi.post('/signin', { email, password })
       await AsyncStorage.setItem('token', res.data.token)
       dispatch({ type: 'SIGNIN_SUCCESS', payload: res.data.token })
+
+      const user = await trackerApi.get(`/user/${res.data.token}`)
+      dispatch({ type: 'GET_USER_DETAILS', payload: user.data })
+
       navigate('TrackList')
     } catch (error) {
       dispatch({

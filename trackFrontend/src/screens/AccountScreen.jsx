@@ -10,7 +10,6 @@ import { useRoute } from '@react-navigation/native'
 const AccountScreen = ({ navigation }) => {
   const { state, signout, updateUser } = useContext(AuthContext)
   const { routeName } = navigation.state
-  console.log(state)
   return (
     <View>
       <SafeAreaView forceInset={{ top: 'always' }}>
