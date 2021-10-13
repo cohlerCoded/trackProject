@@ -18,18 +18,21 @@ const AuthForm = ({
   const [viewIcon, setViewIcon] = useState(false)
   const { state, getUserDetails } = useContext(AuthContext)
 
-  // const phoneNumberFormater = (number) => {
-  //   // let newNum = '(   )   -    '
-  //   // for (let i = 0; i < newNum.length; i++) {
-  //   //   if (number[i] && newNum[i] === ' ') newNum[i] = number[i]
-  //   // }
-  //   // return newNum
-  //   for (let i = 0; i < number.length; i++) {
-  //     if (i === 0) number += '('
-  //     else if (i === 3) number += ')'
-  //   }
-  //   return number
-  // }
+  const phoneNumberFormater = (number) => {
+    return number.length <= 1 && number[0] === '('
+      ? ''
+      : number.length === 1
+      ? '(' + number
+      : number.length === 4
+      ? number + ') '
+      : number.length <= 5 && number[4] === ')'
+      ? number.slice(0, 4)
+      : number.length === 9
+      ? number + ' - '
+      : number.length <= 11 && number[10] === '-'
+      ? number.slice(0, 9)
+      : number
+  }
 
   useEffect(() => {
     if (state.user) {
@@ -54,11 +57,12 @@ const AuthForm = ({
         // <PhoneInput onInputChange={phoneInputHandler} number={phoneNumber} />
         <Input
           label='Phone Number'
-          value={phoneNumber}
+          value={phoneNumberFormater(phoneNumber)}
           onChangeText={setPhoneNumber}
           autoCapitalize='none'
           autoCorrect={false}
           keyboardType='numeric'
+          maxLength={16}
         />
       )}
       {screen !== 'Account' && (
