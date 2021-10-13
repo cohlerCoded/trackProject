@@ -10,7 +10,12 @@ const authReducer = (state, action) => {
     case 'SIGNUP_ERROR':
       return { ...state, errorMessage: action.payload }
     case 'USER_UPDATE_SUCCESS':
-      return { errorMessage: '', user: action.payload }
+      return {
+        ...state,
+        errorMessage: '',
+        successMessage: 'User successfully updated!',
+        user: action.payload,
+      }
     case 'USER_UPDATE_ERROR':
       return { ...state, errorMessage: action.payload }
     case 'GET_USER_DETAILS':
@@ -21,6 +26,8 @@ const authReducer = (state, action) => {
       return { ...state, errorMessage: action.payload }
     case 'CLEAR_ERROR_MESSAGE':
       return { ...state, errorMessage: '' }
+    case 'CLEAR_SUCCESS_MESSAGE':
+      return { ...state, successMessage: '' }
     case 'SIGNOUT':
       return { token: null, errorMessage: '' }
     default:
@@ -46,6 +53,10 @@ const tryLocalSignin = (dispatch) => async () => {
 const clearErrorMessage = (dispatch) => () => {
   dispatch({ type: 'CLEAR_ERROR_MESSAGE' })
 }
+const clearSuccessMessage = (dispatch) => () => {
+  dispatch({ type: 'CLEAR_SUCCESS_MESSAGE' })
+}
+
 const signup =
   (dispatch) =>
   async ({ email, password, phoneNumber }) => {
@@ -74,6 +85,7 @@ const signup =
 const updateUser = (dispatch) => async (user) => {
   try {
     const res = await trackerApi.put(`/${user._id}`, user)
+    console.log(res.data)
     dispatch({ type: 'USER_UPDATE_SUCCESS', payload: res.data })
   } catch (error) {
     dispatch({
@@ -116,6 +128,7 @@ export const { Provider, Context } = createDataContext(
     signin,
     signout,
     clearErrorMessage,
+    clearSuccessMessage,
     tryLocalSignin,
     getUserDetails,
     updateUser,

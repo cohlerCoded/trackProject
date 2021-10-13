@@ -6,12 +6,18 @@ import { Context as AuthContext } from '../context/authContext'
 import { FontAwesome } from '@expo/vector-icons'
 import AuthForm from '../components/AuthForm'
 import { useRoute } from '@react-navigation/native'
+import { NavigationEvents } from 'react-navigation'
 
 const AccountScreen = ({ navigation }) => {
-  const { state, signout, updateUser } = useContext(AuthContext)
+  const { state, signout, updateUser, clearErrorMessage, clearSuccessMessage } =
+    useContext(AuthContext)
   const { routeName } = navigation.state
   return (
     <View>
+      <NavigationEvents
+        onWillFocus={clearErrorMessage}
+        onWillBlur={clearSuccessMessage}
+      />
       <SafeAreaView forceInset={{ top: 'always' }}>
         <Text h3 h3Style={{ marginVertical: 30, textAlign: 'center' }}>
           Account Settings
@@ -21,7 +27,8 @@ const AccountScreen = ({ navigation }) => {
           headerText='Edit Info'
           buttonText='Save Changes'
           errorMessage={state.errorMessage}
-          onSubmitHandler={() => {}}
+          successMessage={state.successMessage}
+          onSubmitHandler={updateUser}
         />
         <Button
           title='Sign Out'

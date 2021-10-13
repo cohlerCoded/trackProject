@@ -8,6 +8,7 @@ const AuthForm = ({
   headerText,
   buttonText,
   errorMessage,
+  successMessage,
   onSubmitHandler,
   screen,
 }) => {
@@ -35,7 +36,6 @@ const AuthForm = ({
   }
 
   useEffect(() => {
-    console.log(state)
     if (state.user) {
       setEmail(state.user.email)
       setPhoneNumber(state.user.phoneNumber)
@@ -88,6 +88,9 @@ const AuthForm = ({
       {errorMessage ? (
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : null}
+      {successMessage ? (
+        <Text style={styles.successMessage}>{successMessage}</Text>
+      ) : null}
       <Button
         title={buttonText}
         loading={false}
@@ -103,7 +106,17 @@ const AuthForm = ({
           marginVertical: 10,
           alignSelf: 'center',
         }}
-        onPress={() => onSubmitHandler({ email, password, phoneNumber })}
+        onPress={
+          screen === 'Account'
+            ? () =>
+                onSubmitHandler({
+                  _id: state.user._id,
+                  email,
+                  password,
+                  phoneNumber,
+                })
+            : () => onSubmitHandler({ email, password, phoneNumber })
+        }
       />
     </>
   )
@@ -113,6 +126,12 @@ const styles = StyleSheet.create({
   errorMessage: {
     fontSize: 16,
     color: 'red',
+    textAlign: 'center',
+    marginVertical: 10,
+  },
+  successMessage: {
+    fontSize: 16,
+    color: 'green',
     textAlign: 'center',
     marginVertical: 10,
   },
