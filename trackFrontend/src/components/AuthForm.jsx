@@ -18,21 +18,25 @@ const AuthForm = ({
   const [viewIcon, setViewIcon] = useState(false)
   const { state, getUserDetails } = useContext(AuthContext)
 
-  const phoneInputHandler = (number) => setPhoneNumber(number)
+  // const phoneNumberFormater = (number) => {
+  //   // let newNum = '(   )   -    '
+  //   // for (let i = 0; i < newNum.length; i++) {
+  //   //   if (number[i] && newNum[i] === ' ') newNum[i] = number[i]
+  //   // }
+  //   // return newNum
+  //   for (let i = 0; i < number.length; i++) {
+  //     if (i === 0) number += '('
+  //     else if (i === 3) number += ')'
+  //   }
+  //   return number
+  // }
 
   useEffect(() => {
-    console.log(state)
-    // const data = async () => {
-    //   if (state.token) {
-    //     try {
-    //       const { user } = await getUserDetails(state.token)
-    //       console.log(user)
-    //     } catch (error) {
-    //       console.log(error)
-    //     }
-    //   }
-    // }
-    // data()
+    if (state.user) {
+      setEmail(state.user.email)
+      // setPhoneNumber(phoneNumberFormater(state.user.phoneNumber))
+      console.log(state.user.phoneNumber)
+    }
   }, [])
   return (
     <>
@@ -47,7 +51,15 @@ const AuthForm = ({
         autoCorrect={false}
       />
       {screen !== 'Signin' && (
-        <PhoneInput onInputChange={phoneInputHandler} number={phoneNumber} />
+        // <PhoneInput onInputChange={phoneInputHandler} number={phoneNumber} />
+        <Input
+          label='Phone Number'
+          value={phoneNumber}
+          onChangeText={setPhoneNumber}
+          autoCapitalize='none'
+          autoCorrect={false}
+          keyboardType='numeric'
+        />
       )}
       {screen !== 'Account' && (
         <Input
