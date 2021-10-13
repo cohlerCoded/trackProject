@@ -18,7 +18,7 @@ router.post('/signup', async (req, res) => {
       res.status(400)
       throw new Error('User with that phone number already exist')
     }
-    if (phoneNumber.length !== 10) {
+    if (phoneNumber.length !== 16) {
       throw new Error('Phone number must be 10 digits')
     }
     const user = new User({ email, password, phoneNumber })

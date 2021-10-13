@@ -35,10 +35,10 @@ const AuthForm = ({
   }
 
   useEffect(() => {
+    console.log(state)
     if (state.user) {
       setEmail(state.user.email)
-      // setPhoneNumber(phoneNumberFormater(state.user.phoneNumber))
-      console.log(state.user.phoneNumber)
+      setPhoneNumber(state.user.phoneNumber)
     }
   }, [])
   return (

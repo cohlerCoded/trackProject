@@ -28,6 +28,11 @@ const authReducer = (state, action) => {
   }
 }
 
+const getUserDetails = (dispatch) => async (token) => {
+  const res = await trackerApi.get(`/user/${token}`)
+  dispatch({ type: 'GET_USER_DETAILS', payload: res.data })
+}
+
 const tryLocalSignin = (dispatch) => async () => {
   const token = await AsyncStorage.getItem('token')
   if (token) {
@@ -52,6 +57,10 @@ const signup =
       })
       await AsyncStorage.setItem('token', res.data.token)
       dispatch({ type: 'SIGNUP_SUCCESS', payload: res.data.token })
+
+      const user = await trackerApi.get(`/user/${res.data.token}`)
+      dispatch({ type: 'GET_USER_DETAILS', payload: user.data })
+
       navigate('TrackList')
     } catch (error) {
       console.log(error.response.data)
@@ -61,11 +70,6 @@ const signup =
       })
     }
   }
-
-const getUserDetails = (dispatch) => async (token) => {
-  const res = await trackerApi.get(`/user/${token}`)
-  dispatch({ type: 'GET_USER_DETAILS', payload: res.data })
-}
 
 const updateUser = (dispatch) => async (user) => {
   try {
