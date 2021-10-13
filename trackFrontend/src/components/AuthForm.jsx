@@ -52,6 +52,7 @@ const AuthForm = ({
         onChangeText={setEmail}
         autoCapitalize='none'
         autoCorrect={false}
+        placeholder='example@gmail.com'
       />
       {screen !== 'Signin' && (
         // <PhoneInput onInputChange={phoneInputHandler} number={phoneNumber} />
@@ -63,6 +64,7 @@ const AuthForm = ({
           autoCorrect={false}
           keyboardType='numeric'
           maxLength={16}
+          placeholder='(123) 456 - 7890'
         />
       )}
       {screen !== 'Account' && (
