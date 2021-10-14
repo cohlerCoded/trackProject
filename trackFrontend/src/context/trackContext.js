@@ -22,7 +22,6 @@ const deleteTrack = (dispatch) => async (id, name) => {
     'Are your sure?',
     `Are you sure you want to delete track '${name}'?`,
     [
-      // The "Yes" button
       {
         text: 'Yes',
         onPress: async () => {
@@ -31,8 +30,6 @@ const deleteTrack = (dispatch) => async (id, name) => {
           dispatch({ type: 'FETCH_TRACKS', payload: res.data })
         },
       },
-      // The "No" button
-      // Does nothing but dismiss the dialog when tapped
       {
         text: 'No',
       },

@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Text, Input, Button } from 'react-native-elements'
+import { Text, Button } from 'react-native-elements'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Context as AuthContext } from '../context/authContext'
 import { FontAwesome } from '@expo/vector-icons'
 import AuthForm from '../components/AuthForm'
-import { useRoute } from '@react-navigation/native'
 import { NavigationEvents } from 'react-navigation'
 
 const AccountScreen = ({ navigation }) => {
