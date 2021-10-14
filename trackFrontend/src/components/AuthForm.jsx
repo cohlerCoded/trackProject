@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 import { Context as AuthContext } from '../context/authContext'
-import PhoneInput from './PhoneInput'
 
 const AuthForm = ({
   headerText,
@@ -17,7 +16,7 @@ const AuthForm = ({
   const [phoneNumber, setPhoneNumber] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const [viewIcon, setViewIcon] = useState(false)
-  const { state, getUserDetails } = useContext(AuthContext)
+  const { state } = useContext(AuthContext)
 
   const phoneNumberFormater = (number) => {
     return number.length <= 1 && number[0] === '('
@@ -55,7 +54,6 @@ const AuthForm = ({
         placeholder='example@gmail.com'
       />
       {screen !== 'Signin' && (
-        // <PhoneInput onInputChange={phoneInputHandler} number={phoneNumber} />
         <Input
           label='Phone Number'
           value={phoneNumberFormater(phoneNumber)}
