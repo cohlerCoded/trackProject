@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import { Context as LocationContext } from '../context/locationContext'
 import useSaveTrack from '../hooks/useSaveTrack'
