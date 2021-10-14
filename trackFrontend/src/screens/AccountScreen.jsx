@@ -12,6 +12,7 @@ const AccountScreen = ({ navigation }) => {
   const { state, signout, updateUser, clearErrorMessage, clearSuccessMessage } =
     useContext(AuthContext)
   const { routeName } = navigation.state
+  console.log(state)
   return (
     <View>
       <NavigationEvents

@@ -78,6 +78,7 @@ router.put('/:id', async (req, res) => {
     const updatedUser = await user.save()
 
     res.json({
+      _id: user._id,
       email: updatedUser.email,
       phoneNumber: updatedUser.phoneNumber,
     })
