@@ -1,17 +1,8 @@
 import React, { useContext } from 'react'
-import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-  Alert,
-} from 'react-native'
+import { View, FlatList, TouchableOpacity } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import { NavigationEvents } from 'react-navigation'
 import { Context as TrackContext } from '../context/trackContext'
-ListItem
 import { FontAwesome } from '@expo/vector-icons'
 
 const TrackListScreen = ({ navigation }) => {

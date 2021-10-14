@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
-import { StyleSheet, Text, View, Alert } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { Button } from 'react-native-elements'
-import MapView, { Polyline, Marker } from 'react-native-maps'
-import ConfirmBox from '../components/ConfirmBox'
+import MapView, { Polyline } from 'react-native-maps'
 import { Context as TrackContext } from '../context/trackContext'
 
 const TrackDetailsScreen = ({ navigation }) => {
