@@ -84,9 +84,9 @@ const signup =
 
 const updateUser = (dispatch) => async (user) => {
   try {
-    const res = await trackerApi.put(`/${user._id}`, user)
-    console.log(res.data)
-    dispatch({ type: 'USER_UPDATE_SUCCESS', payload: res.data })
+    const { data } = await trackerApi.put(`/${user._id}`, user)
+    console.log(data)
+    dispatch({ type: 'USER_UPDATE_SUCCESS', payload: data })
   } catch (error) {
     dispatch({
       type: 'USER_UPDATE_ERROR',
