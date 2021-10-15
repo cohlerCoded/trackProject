@@ -94,7 +94,8 @@ const AuthForm = ({
         loading={false}
         loadingProps={{ size: 'small', color: 'white' }}
         buttonStyle={{
-          backgroundColor: 'rgba(78, 116, 289, 1)',
+          backgroundColor:
+            screen === 'Account' ? 'green' : 'rgba(78, 116, 289, 1)',
           borderRadius: 100,
         }}
         titleStyle={{ fontWeight: 'bold', fontSize: 23 }}

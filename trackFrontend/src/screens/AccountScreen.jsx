@@ -13,7 +13,7 @@ const AccountScreen = ({ navigation }) => {
   const { routeName } = navigation.state
   console.log(state)
   return (
-    <View>
+    <View style={{ height: '100%' }}>
       <NavigationEvents
         onWillFocus={clearErrorMessage}
         onWillBlur={clearSuccessMessage}
@@ -35,7 +35,7 @@ const AccountScreen = ({ navigation }) => {
           loading={false}
           loadingProps={{ size: 'small', color: 'white' }}
           buttonStyle={{
-            backgroundColor: 'red',
+            backgroundColor: 'rgba(78, 116, 289, 1)',
             borderRadius: 100,
           }}
           titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
@@ -48,6 +48,25 @@ const AccountScreen = ({ navigation }) => {
           onPress={signout}
         />
       </SafeAreaView>
+      <View style={{ position: 'absolute', bottom: 0, alignSelf: 'center' }}>
+        <Button
+          title='Delete Account'
+          loading={false}
+          loadingProps={{ size: 'small', color: 'white' }}
+          buttonStyle={{
+            backgroundColor: 'red',
+            borderRadius: 100,
+          }}
+          titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+          containerStyle={{
+            height: 50,
+            width: 200,
+            marginVertical: 10,
+            alignSelf: 'center',
+          }}
+          onPress={signout}
+        />
+      </View>
     </View>
   )
 }

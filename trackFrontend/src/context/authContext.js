@@ -110,7 +110,7 @@ const signin =
     } catch (error) {
       dispatch({
         type: 'SIGNIN_ERROR',
-        payload: 'Something went wrong with sign up',
+        payload: 'Something went wrong with sign in',
       })
     }
   }
