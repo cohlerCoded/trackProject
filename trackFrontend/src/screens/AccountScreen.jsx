@@ -8,8 +8,14 @@ import AuthForm from '../components/AuthForm'
 import { NavigationEvents } from 'react-navigation'
 
 const AccountScreen = ({ navigation }) => {
-  const { state, signout, updateUser, clearErrorMessage, clearSuccessMessage } =
-    useContext(AuthContext)
+  const {
+    state,
+    signout,
+    updateUser,
+    clearErrorMessage,
+    clearSuccessMessage,
+    deleteUser,
+  } = useContext(AuthContext)
   const { routeName } = navigation.state
   console.log(state)
   return (
@@ -64,7 +70,7 @@ const AccountScreen = ({ navigation }) => {
             marginVertical: 10,
             alignSelf: 'center',
           }}
-          onPress={signout}
+          onPress={() => deleteUser(state.user._id)}
         />
       </View>
     </View>

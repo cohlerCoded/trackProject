@@ -1,4 +1,5 @@
 import createDataContext from './createDataContext'
+import { Alert } from 'react-native'
 import trackerApi from '../api/tracker'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { navigate } from '../navigationRef'
@@ -121,6 +122,25 @@ const signout = (dispatch) => async () => {
   navigate('Signin')
 }
 
+const deleteUser = (dispatch) => async (id) => {
+  Alert.alert(
+    'Are your sure?',
+    `Are you sure you want to delete this account?`,
+    [
+      {
+        text: 'Yes',
+        onPress: async () => {
+          await trackerApi.delete(`/${id}`)
+          dispatch({ type: 'SIGNOUT' })
+          navigate('Signin')
+        },
+      },
+      {
+        text: 'No',
+      },
+    ]
+  )
+}
 export const { Provider, Context } = createDataContext(
   authReducer,
   {
@@ -132,6 +152,7 @@ export const { Provider, Context } = createDataContext(
     tryLocalSignin,
     getUserDetails,
     updateUser,
+    deleteUser,
   },
   { token: null, errorMessage: '' }
 )
