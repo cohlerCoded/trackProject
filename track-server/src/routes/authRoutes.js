@@ -91,7 +91,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const user = await User.findById(req.params.id)
   if (user) {
-    await User.remove()
+    await User.deleteOne({ _id: user._id })
     res.json({ message: 'User Removed' })
   } else {
     res.status(404)

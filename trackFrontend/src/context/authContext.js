@@ -130,9 +130,14 @@ const deleteUser = (dispatch) => async (id) => {
       {
         text: 'Yes',
         onPress: async () => {
-          await trackerApi.delete(`/${id}`)
-          dispatch({ type: 'SIGNOUT' })
-          navigate('Signin')
+          console.log(id)
+          try {
+            await trackerApi.delete(`/${id}`)
+            dispatch({ type: 'SIGNOUT' })
+            navigate('Signin')
+          } catch (error) {
+            throw new Error(error.message)
+          }
         },
       },
       {
