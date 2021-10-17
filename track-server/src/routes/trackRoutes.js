@@ -29,6 +29,25 @@ router.post('/tracks', async (req, res) => {
   }
 })
 
+router.put('/tracks/:id', async (req, res) => {
+  const track = await Track.findById(req.params.id)
+  if (track) {
+    track = req.body.name || track.name
+
+    const updatedTrack = await track.save()
+
+    res.json({
+      _id: updatedTrack._id,
+      name: updatedTrack.name,
+      locations: updatedTrack.locations,
+      userId: updatedTrack.userId,
+    })
+  } else {
+    res.status(404)
+    throw new Error('Track Not Found')
+  }
+})
+
 router.delete('/tracks/:id', async (req, res) => {
   const track = await Track.findById(req.params.id)
   if (track) {
