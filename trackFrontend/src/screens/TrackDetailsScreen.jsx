@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-elements'
 import MapView, { Polyline } from 'react-native-maps'
 import { Context as TrackContext } from '../context/trackContext'
+import { FontAwesome } from '@expo/vector-icons'
 
 const TrackDetailsScreen = ({ navigation }) => {
   const { state, deleteTrack } = useContext(TrackContext)
@@ -13,7 +14,24 @@ const TrackDetailsScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Text style={{ fontSize: 48 }}>{track.name}</Text>
+      <TouchableOpacity
+        style={{ flexDirection: 'row', alignSelf: 'center' }}
+        onPress={() => {}}
+      >
+        <Text style={{ fontSize: 30, marginVertical: 15, textAlign: 'center' }}>
+          {track.name}
+        </Text>
+        <FontAwesome
+          name='edit'
+          size={20}
+          color='black'
+          style={{
+            right: 0,
+            marginHorizontal: 10,
+            alignSelf: 'center',
+          }}
+        />
+      </TouchableOpacity>
       <MapView
         style={styles.map}
         initialRegion={{
