@@ -31,8 +31,9 @@ router.post('/tracks', async (req, res) => {
 
 router.put('/tracks/:id', async (req, res) => {
   const track = await Track.findById(req.params.id)
+  console.log(req.body)
   if (track) {
-    track = req.body.name || track.name
+    track.name = req.body.name || track.name
 
     const updatedTrack = await track.save()
 

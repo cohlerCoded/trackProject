@@ -17,6 +17,12 @@ const fetchTracks = (dispatch) => async () => {
 const createTrack = (dispatch) => async (name, locations) => {
   await trackerApi.post('/tracks', { name, locations })
 }
+
+const editTrackName = (dispatch) => async (id, newName) => {
+  const { data } = await trackerApi.put(`/tracks/${id}`, newName)
+  console.log(newName)
+  console.log(data)
+}
 const deleteTrack = (dispatch) => async (id, name) => {
   Alert.alert(
     'Are your sure?',
@@ -39,6 +45,6 @@ const deleteTrack = (dispatch) => async (id, name) => {
 
 export const { Provider, Context } = createDataContext(
   trackReducer,
-  { fetchTracks, createTrack, deleteTrack },
+  { fetchTracks, createTrack, deleteTrack, editTrackName },
   []
 )
