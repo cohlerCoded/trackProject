@@ -19,9 +19,7 @@ const createTrack = (dispatch) => async (name, locations) => {
 }
 
 const editTrackName = (dispatch) => async (id, newName) => {
-  const { data } = await trackerApi.put(`/tracks/${id}`, newName)
-  console.log(newName)
-  console.log(data)
+  await trackerApi.put(`/tracks/${id}`, { newName })
 }
 const deleteTrack = (dispatch) => async (id, name) => {
   Alert.alert(

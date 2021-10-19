@@ -37,7 +37,7 @@ const TrackDetailsScreen = ({ navigation }) => {
           <Text
             style={{ fontSize: 30, marginVertical: 15, textAlign: 'center' }}
           >
-            {track.name}
+            {trackName || track.name}
           </Text>
         )}
         <FontAwesome
