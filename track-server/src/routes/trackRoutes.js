@@ -31,13 +31,11 @@ router.post('/tracks', async (req, res) => {
 
 router.put('/tracks/:id', async (req, res) => {
   const track = await Track.findById(req.params.id)
-  console.log(req.body.newName)
   if (track) {
     track.name = req.body.newName || track.name
 
     const updatedTrack = await track.save()
 
-    console.log(updatedTrack)
     res.json({
       _id: updatedTrack._id,
       name: updatedTrack.name,

@@ -75,7 +75,6 @@ const signup =
 
       navigate('TrackList')
     } catch (error) {
-      console.log(error.response.data)
       dispatch({
         type: 'SIGNUP_ERROR',
         payload: error.response && error.response.data,
@@ -86,7 +85,6 @@ const signup =
 const updateUser = (dispatch) => async (user) => {
   try {
     const { data } = await trackerApi.put(`/${user._id}`, user)
-    console.log(data)
     dispatch({ type: 'USER_UPDATE_SUCCESS', payload: data })
   } catch (error) {
     dispatch({
@@ -130,7 +128,6 @@ const deleteUser = (dispatch) => async (id) => {
       {
         text: 'Yes',
         onPress: async () => {
-          console.log(id)
           try {
             await trackerApi.delete(`/${id}`)
             dispatch({ type: 'SIGNOUT' })
