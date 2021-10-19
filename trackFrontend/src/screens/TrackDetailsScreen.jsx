@@ -26,6 +26,7 @@ const TrackDetailsScreen = ({ navigation }) => {
             onChangeText={(newName) => {
               setTrackName(newName)
             }}
+            autoFocus
             autoCapitalize='none'
             autoCorrect={false}
             onBlur={() => {
@@ -40,16 +41,18 @@ const TrackDetailsScreen = ({ navigation }) => {
             {trackName || track.name}
           </Text>
         )}
-        <FontAwesome
-          name='edit'
-          size={20}
-          color='black'
-          style={{
-            right: 0,
-            marginHorizontal: 10,
-            alignSelf: 'center',
-          }}
-        />
+        {!willEditTrackName && (
+          <FontAwesome
+            name='edit'
+            size={20}
+            color='black'
+            style={{
+              right: 0,
+              marginHorizontal: 10,
+              alignSelf: 'center',
+            }}
+          />
+        )}
       </TouchableOpacity>
       <MapView
         style={styles.map}
