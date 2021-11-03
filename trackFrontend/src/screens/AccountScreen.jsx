@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { Text, Button } from 'react-native-elements'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Context as AuthContext } from '../context/authContext'
@@ -54,25 +54,24 @@ const AccountScreen = ({ navigation }) => {
           onPress={signout}
         />
       </SafeAreaView>
-      <View style={{ position: 'absolute', bottom: 0, alignSelf: 'center' }}>
-        <Button
-          title='Delete Account'
-          loading={false}
-          loadingProps={{ size: 'small', color: 'white' }}
-          buttonStyle={{
-            backgroundColor: 'red',
-            borderRadius: 100,
-          }}
-          titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
-          containerStyle={{
-            height: 50,
-            width: 200,
-            marginVertical: 10,
-            alignSelf: 'center',
-          }}
-          onPress={() => deleteUser(state.user._id)}
-        />
-      </View>
+
+      <Button
+        title='Delete Account'
+        loading={false}
+        loadingProps={{ size: 'small', color: 'white' }}
+        buttonStyle={{
+          backgroundColor: 'red',
+          borderRadius: 100,
+        }}
+        titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+        containerStyle={{
+          height: 50,
+          width: 200,
+          marginVertical: 10,
+          alignSelf: 'center',
+        }}
+        onPress={() => deleteUser(state.user._id)}
+      />
     </View>
   )
 }
