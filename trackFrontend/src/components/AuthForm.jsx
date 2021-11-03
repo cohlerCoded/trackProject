@@ -48,7 +48,7 @@ const AuthForm = ({
       <Input
         label={screen === 'Signin' ? 'Email or Phone Number' : 'Email'}
         value={email}
-        onChangeText={setEmail}
+        onChangeText={(text) => setEmail(text.trim())}
         autoCapitalize='none'
         autoCorrect={false}
         placeholder='example@gmail.com'
