@@ -11,7 +11,7 @@ const SigninScreen = ({ navigation }) => {
   const { routeName } = navigation.state
 
   return (
-    <View style={{ marginVertical: '45%' }}>
+    <View>
       <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
         headerText='Sign In'

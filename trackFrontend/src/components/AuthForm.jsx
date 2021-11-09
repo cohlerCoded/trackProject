@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Keyboard, ScrollView } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 import { Context as AuthContext } from '../context/authContext'
 
@@ -17,6 +17,7 @@ const AuthForm = ({
   const [readyToSignIn, setReadyToSignIn] = useState(false)
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const [viewIcon, setViewIcon] = useState(false)
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false)
   const { state } = useContext(AuthContext)
 
   const phoneNumberFormater = (number) => {
@@ -44,10 +45,28 @@ const AuthForm = ({
     password.length > 3 && email.includes('@')
       ? setReadyToSignIn(true)
       : setReadyToSignIn(false)
+
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(true) // or some other action
+      }
+    )
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false) // or some other action
+      }
+    )
+
+    return () => {
+      keyboardDidHideListener.remove()
+      keyboardDidShowListener.remove()
+    }
   }, [email, password, readyToSignIn])
 
   return (
-    <>
+    <ScrollView style={{ marginVertical: isKeyboardVisible ? '10%' : '45%' }}>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
         {headerText}
       </Text>
@@ -127,7 +146,7 @@ const AuthForm = ({
             : () => onSubmitHandler({ email, password, phoneNumber })
         }
       />
-    </>
+    </ScrollView>
   )
 }
 
