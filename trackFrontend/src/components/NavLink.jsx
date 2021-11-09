@@ -19,6 +19,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'blue',
     textAlign: 'center',
-    marginVertical: 10,
+    marginVertical: 20,
   },
 })

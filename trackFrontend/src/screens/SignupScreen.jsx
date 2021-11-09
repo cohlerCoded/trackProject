@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { StyleSheet, View, Keyboard } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { NavigationEvents } from 'react-navigation'
 import AuthForm from '../components/AuthForm'
 import NavLink from '../components/NavLink'

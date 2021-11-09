@@ -66,7 +66,11 @@ const AuthForm = ({
   }, [email, password, readyToSignIn])
 
   return (
-    <ScrollView style={{ marginVertical: isKeyboardVisible ? '10%' : '45%' }}>
+    <ScrollView
+      style={{
+        marginTop: isKeyboardVisible ? '10%' : screen === 'Account' ? 0 : '50%',
+      }}
+    >
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
         {headerText}
       </Text>

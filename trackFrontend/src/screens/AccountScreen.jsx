@@ -19,41 +19,39 @@ const AccountScreen = ({ navigation }) => {
   const { routeName } = navigation.state
   console.log(state)
   return (
-    <View style={{ height: '100%' }}>
+    <ScrollView>
       <NavigationEvents
         onWillFocus={clearErrorMessage}
         onWillBlur={clearSuccessMessage}
       />
-      <SafeAreaView forceInset={{ top: 'always' }}>
-        <Text h3 h3Style={{ marginVertical: 30, textAlign: 'center' }}>
-          Account Settings
-        </Text>
-        <AuthForm
-          screen={routeName}
-          headerText='Edit Info'
-          buttonText='Save Changes'
-          errorMessage={state.errorMessage}
-          successMessage={state.successMessage}
-          onSubmitHandler={updateUser}
-        />
-        <Button
-          title='Sign Out'
-          loading={false}
-          loadingProps={{ size: 'small', color: 'white' }}
-          buttonStyle={{
-            backgroundColor: 'rgba(78, 116, 289, 1)',
-            borderRadius: 100,
-          }}
-          titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
-          containerStyle={{
-            height: 50,
-            width: 200,
-            marginVertical: 10,
-            alignSelf: 'center',
-          }}
-          onPress={signout}
-        />
-      </SafeAreaView>
+      <Text h3 h3Style={{ marginVertical: 30, textAlign: 'center' }}>
+        Account Settings
+      </Text>
+      <AuthForm
+        screen={routeName}
+        headerText='Edit Info'
+        buttonText='Save Changes'
+        errorMessage={state.errorMessage}
+        successMessage={state.successMessage}
+        onSubmitHandler={updateUser}
+      />
+      <Button
+        title='Sign Out'
+        loading={false}
+        loadingProps={{ size: 'small', color: 'white' }}
+        buttonStyle={{
+          backgroundColor: 'rgba(78, 116, 289, 1)',
+          borderRadius: 100,
+        }}
+        titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+        containerStyle={{
+          height: 50,
+          width: 200,
+          marginVertical: 10,
+          alignSelf: 'center',
+        }}
+        onPress={signout}
+      />
 
       <Button
         title='Delete Account'
@@ -72,7 +70,7 @@ const AccountScreen = ({ navigation }) => {
         }}
         onPress={() => deleteUser(state.user._id)}
       />
-    </View>
+    </ScrollView>
   )
 }
 
