@@ -5,8 +5,9 @@ import AuthForm from '../components/AuthForm'
 import NavLink from '../components/NavLink'
 import { Context as AuthContext } from '../context/authContext'
 
-const SignupScreen = () => {
+const SignupScreen = ({ navigation }) => {
   const { state, signup, clearErrorMessage } = useContext(AuthContext)
+  const { routeName } = navigation.state
   return (
     <View>
       <NavigationEvents onWillFocus={clearErrorMessage} />
@@ -15,6 +16,7 @@ const SignupScreen = () => {
         buttonText='Sign Up'
         errorMessage={state.errorMessage}
         onSubmitHandler={signup}
+        screen={routeName}
       />
       <NavLink
         linkText='Already have an account? Go to sign in.'

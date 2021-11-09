@@ -15,6 +15,8 @@ const AuthForm = ({
   const [password, setPassword] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [readyToSignIn, setReadyToSignIn] = useState(false)
+  const [readyToSignUp, setReadyToSignUp] = useState(false)
+  const [readyToUpdate, setReadyToUpdate] = useState(false)
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const [viewIcon, setViewIcon] = useState(false)
   const [isKeyboardVisible, setKeyboardVisible] = useState(false)
@@ -35,16 +37,27 @@ const AuthForm = ({
       ? number.slice(0, 9)
       : number
   }
-
   useEffect(() => {
     if (state.user) {
       setEmail(state.user.email)
       setPhoneNumber(state.user.phoneNumber)
     }
 
+    console.log(screen)
+    //Signin Button Color Change
     password.length > 3 && email.includes('@')
       ? setReadyToSignIn(true)
       : setReadyToSignIn(false)
+
+    //Signup Button Color Change
+    password.length > 3 && email.includes('@') && phoneNumber.length
+      ? setReadyToSignUp(true)
+      : setReadyToSignUp(false)
+
+    //Update Button Color Change
+    password.length > 3 && email.includes('@')
+      ? setReadyToUpdate(true)
+      : setReadyToUpdate(false)
 
     const keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
@@ -63,7 +76,7 @@ const AuthForm = ({
       keyboardDidHideListener.remove()
       keyboardDidShowListener.remove()
     }
-  }, [email, password, readyToSignIn])
+  }, [email, password, phoneNumber, readyToSignIn, readyToSignUp])
 
   return (
     <ScrollView
@@ -124,10 +137,12 @@ const AuthForm = ({
         loadingProps={{ size: 'small', color: 'white' }}
         buttonStyle={{
           backgroundColor:
-            screen === 'Account'
-              ? 'green'
-              : readyToSignIn
+            screen === 'Account' && readyToUpdate
               ? 'rgba(78, 116, 289, 1)'
+              : screen === 'Signin' && readyToSignIn
+              ? 'rgba(78, 116, 289, 1)'
+              : screen === 'Signup' && readyToSignUp
+              ? 'red'
               : '#86939e',
           borderRadius: 100,
         }}
