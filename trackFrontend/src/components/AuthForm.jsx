@@ -14,6 +14,7 @@ const AuthForm = ({
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
+  const [readyToSignIn, setReadyToSignIn] = useState(false)
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const [viewIcon, setViewIcon] = useState(false)
   const { state } = useContext(AuthContext)
@@ -39,7 +40,12 @@ const AuthForm = ({
       setEmail(state.user.email)
       setPhoneNumber(state.user.phoneNumber)
     }
-  }, [])
+
+    password.length > 3 && email.includes('@')
+      ? setReadyToSignIn(true)
+      : setReadyToSignIn(false)
+  }, [email, password, readyToSignIn])
+
   return (
     <>
       <Text h3 h3Style={{ marginVertical: 15, textAlign: 'center' }}>
@@ -95,7 +101,11 @@ const AuthForm = ({
         loadingProps={{ size: 'small', color: 'white' }}
         buttonStyle={{
           backgroundColor:
-            screen === 'Account' ? 'green' : 'rgba(78, 116, 289, 1)',
+            screen === 'Account'
+              ? 'green'
+              : readyToSignIn
+              ? 'rgba(78, 116, 289, 1)'
+              : '#86939e',
           borderRadius: 100,
         }}
         titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
