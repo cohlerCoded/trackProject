@@ -43,14 +43,13 @@ const AuthForm = ({
       setPhoneNumber(state.user.phoneNumber)
     }
 
-    console.log(screen)
     //Signin Button Color Change
     password.length > 3 && email.includes('@')
       ? setReadyToSignIn(true)
       : setReadyToSignIn(false)
 
     //Signup Button Color Change
-    password.length > 3 && email.includes('@') && phoneNumber.length
+    password.length > 3 && email.includes('@') && phoneNumber.length === 16
       ? setReadyToSignUp(true)
       : setReadyToSignUp(false)
 
@@ -142,7 +141,7 @@ const AuthForm = ({
               : screen === 'Signin' && readyToSignIn
               ? 'rgba(78, 116, 289, 1)'
               : screen === 'Signup' && readyToSignUp
-              ? 'red'
+              ? 'rgba(78, 116, 289, 1)'
               : '#86939e',
           borderRadius: 100,
         }}
