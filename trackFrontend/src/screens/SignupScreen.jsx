@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import { NavigationEvents } from 'react-navigation'
 import AuthForm from '../components/AuthForm'
 import NavLink from '../components/NavLink'
@@ -9,7 +9,7 @@ const SignupScreen = ({ navigation }) => {
   const { state, signup, clearErrorMessage } = useContext(AuthContext)
   const { routeName } = navigation.state
   return (
-    <View>
+    <ScrollView keyboardShouldPersistTaps='always'>
       <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
         headerText='Sign Up For Tracker'
@@ -22,7 +22,7 @@ const SignupScreen = ({ navigation }) => {
         linkText='Already have an account? Go to sign in.'
         routeName='Signin'
       />
-    </View>
+    </ScrollView>
   )
 }
 

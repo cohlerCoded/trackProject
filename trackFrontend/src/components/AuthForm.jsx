@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { StyleSheet, Keyboard, ScrollView } from 'react-native'
+import { StyleSheet, Keyboard, View } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 import { Context as AuthContext } from '../context/authContext'
 
@@ -78,7 +78,7 @@ const AuthForm = ({
   }, [email, password, phoneNumber, readyToSignIn, readyToSignUp])
 
   return (
-    <ScrollView
+    <View
       style={{
         marginTop: isKeyboardVisible ? '10%' : screen === 'Account' ? 0 : '50%',
       }}
@@ -164,7 +164,7 @@ const AuthForm = ({
             : () => onSubmitHandler({ email, password, phoneNumber })
         }
       />
-    </ScrollView>
+    </View>
   )
 }
 
