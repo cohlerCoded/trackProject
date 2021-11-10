@@ -37,12 +37,21 @@ const AuthForm = ({
       ? number.slice(0, 9)
       : number
   }
+
   useEffect(() => {
     if (state.user) {
       setEmail(state.user.email)
       setPhoneNumber(state.user.phoneNumber)
     }
+  }, [])
 
+  useEffect(() => {
+    let oldEmail
+    let oldPhone
+    if (state.user) {
+      oldEmail = state.user.email
+      oldPhone = state.user.phoneNumber
+    }
     //Signin Button Color Change
     password.length > 3 && email.includes('@')
       ? setReadyToSignIn(true)
@@ -54,7 +63,8 @@ const AuthForm = ({
       : setReadyToSignUp(false)
 
     //Update Button Color Change
-    password.length > 3 && email.includes('@')
+    ;(phoneNumber.length === 16 && email.includes('@') && oldEmail !== email) ||
+    oldPhone !== phoneNumber
       ? setReadyToUpdate(true)
       : setReadyToUpdate(false)
 
@@ -75,7 +85,7 @@ const AuthForm = ({
       keyboardDidHideListener.remove()
       keyboardDidShowListener.remove()
     }
-  }, [email, password, phoneNumber, readyToSignIn, readyToSignUp])
+  }, [email, phoneNumber, password, readyToSignIn, readyToSignUp])
 
   return (
     <View

@@ -17,7 +17,6 @@ const AccountScreen = ({ navigation }) => {
     deleteUser,
   } = useContext(AuthContext)
   const { routeName } = navigation.state
-  console.log(state)
   return (
     <ScrollView>
       <NavigationEvents
