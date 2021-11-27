@@ -1,6 +1,21 @@
 import * as Location from 'expo-location'
 
 const tenMetersWithDegrees = 0.0001
+let currLong = 0
+let currLat = 0
+
+const getCurrLoc = async () => {
+  try {
+    let location = await Location.getCurrentPositionAsync({})
+    console.log(location)
+    currLong = location.coords.longitude
+    currLat = location.coords.latitude
+    console.log(currLat)
+  } catch (error) {
+    console.log(error)
+  }
+}
+getCurrLoc()
 
 const getLocation = (increment) => {
   return {
@@ -11,8 +26,8 @@ const getLocation = (increment) => {
       accuracy: 5,
       altitudeAccuracy: 5,
       altitude: 5,
-      longitude: -118.3317272 + increment * tenMetersWithDegrees,
-      latitude: 34.1971125 + increment * tenMetersWithDegrees,
+      longitude: currLong + increment * tenMetersWithDegrees,
+      latitude: currLat + increment * tenMetersWithDegrees,
     },
   }
 }
