@@ -7,10 +7,8 @@ let currLat = 0
 const getCurrLoc = async () => {
   try {
     let location = await Location.getCurrentPositionAsync({})
-    console.log(location)
     currLong = location.coords.longitude
     currLat = location.coords.latitude
-    console.log(currLat)
   } catch (error) {
     console.log(error)
   }
